@@ -1,0 +1,119 @@
+---
+title: "Credit scoring: aplicando técnicas de regresión logística y modelos aditivos generalizados para una cartera de crédito en una entidad financiera"
+subtitle: ""
+author: 
+  - "Andrés Suquillo LLumiquinga"
+institute: 
+  - "Escuela Politécnica Nacional"
+date: "Diciembre 17, 2021"
+output:
+  xaringan::moon_reader:
+    css: ["default", "conf/css/style.css", "conf/css/fonts.css"]
+    lib_dir: libs   
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:11"
+    seal: false
+---
+
+```{r share-again, echo=FALSE}
+options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
+#xaringanExtra::use_share_again()
+xaringanExtra::use_fit_screen()
+```
+
+
+class: clear, inverse, mline, center, middle
+
+# Planteamiento del Problema
+
+---
+
+layout: true
+
+<div class="footer"><span> 
+  <div class="row">
+  <div class="content1"> Jaime Andrés Suquillo Llumiquinga - EPN </div> 
+  <div class="content1"> Proyecto de Investigación </div> 
+  <div class="content1"> "Diciembre 17, 2021" </div> 
+  </div>
+</span></div>      
+
+
+
+---
+
+class: slides-demo
+
+# Planteamiento del Problema
+
+<img
+  src="logo/2PP_1.svg"
+  height="50%"
+  width="70%"
+  style="margin:-10px 115px;
+  position: absolute;"
+/>
+
+
+<div class="definition_box2" style="margin-top:345px;">
+<div class="txt1"> 
+La regresión logística es el modelo estadístico más utilizado en la industria de calificación crediticia. A pesar de sus ventajas en la fácil interpretación y el bajo costo computacional, la regresión logística está bajo la crítica de la dificultad de modelar las características no lineales, del efecto de los predictores sobre la variable dependiente y, por lo tanto, podría dar lugar a resultados insatisfactorios.
+</div>
+</div>
+
+--
+
+<img
+  src="logo/equis.png"
+  height="5%"
+  width="5%"
+  style="margin:-495px 380px;
+  position: absolute;"
+/>
+
+--
+
+<img
+  src="logo/equis.png"
+  height="5%"
+  width="5%"
+  style="margin:-495px 770px;
+  position: absolute;"
+/>
+
+---
+
+class: slides-demo
+
+# Planteamiento del Problema
+
+<img
+  src="logo/2PP_2.svg"
+  height="50%"
+  width="50%"
+  style="margin:-20px 210px;
+  position: absolute;"
+/>
+
+
+<div class="definition_box2" style="margin-top:345px;">
+<div class="txt1"> 
+Los Modelos Aditivos Generalizados introducidos por [Hastie and Tibshirani, 1990] proporcionan la capacidad de detectar los patrones no lineales sin sacrificar la interpretabilidad. Una generalización del modelo logístico (logit) es el <b> Modelo Logístico Aditivo Generalizado </b> empleado cuando los valores de variable dependiente son binarios.
+</div>
+</div>
+
+
+--
+
+<img
+  src="logo/visto.png"
+  height="5%"
+  width="5%"
+  style="margin:-495px 580px;
+  position: absolute;"
+/>
+
+

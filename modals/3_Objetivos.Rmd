@@ -1,0 +1,82 @@
+---
+title: "Credit scoring: aplicando técnicas de regresión logística y modelos aditivos generalizados para una cartera de crédito en una entidad financiera"
+subtitle: ""
+author: 
+  - "Andrés Suquillo LLumiquinga"
+institute: 
+  - "Escuela Politécnica Nacional"
+date: "Diciembre 17, 2021"
+output:
+  xaringan::moon_reader:
+    css: ["default", "conf/css/style.css", "conf/css/fonts.css"]
+    lib_dir: libs   
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:11"
+    seal: false
+---
+
+```{r share-again, echo=FALSE}
+options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
+#xaringanExtra::use_share_again()
+xaringanExtra::use_fit_screen()
+```
+
+
+class: clear, inverse, mline, center, middle
+
+# Objetivos
+
+---
+
+layout: true
+
+<div class="footer"><span> 
+  <div class="row">
+  <div class="content1"> Jaime Andrés Suquillo Llumiquinga - EPN </div> 
+  <div class="content1"> Proyecto de Investigación </div> 
+  <div class="content1"> "Diciembre 17, 2021" </div> 
+  </div>
+</span></div>      
+
+
+
+---
+
+class: slides-demo
+
+# Objetivos
+
+<div class="definition_box1" style="margin-top:50px; margin-bottom:20px;">
+  <div class="childA">
+    <div class="titlebox"> 
+  Objetivo General
+    </div>
+  </div>
+  <div class="childB">
+    <div class="txt"> 
+  Comparar dos técnicas estadísticas: Regresión Logística y Modelos Aditivos Generalizados
+que permitirán estimar la probabilidad de incumplimiento de un cliente al momento de la concesión del crédito.
+    </div>
+  </div>
+</div>
+
+--
+
+* Establecer los determinantes del incumplimiento del crédito.
+
+--
+
+* Establecer modelos estadísticos robustos mediante la técnica Regresión Logística
+y el algoritmo de Modelos Aditivos Generalizados que permitan comparar empíricamente
+los resultados obtenidos.
+
+--
+
+* Implementar un código en el lenguaje de programación estadístico R que realice
+automáticamente la metodología analítica utilizada en la generación del modelo y
+nos propine resultados óptimos para la toma de decisiones acertadas.
+
+

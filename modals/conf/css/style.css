@@ -1,0 +1,531 @@
+
+
+.remark-slide-number {
+  color: white; /* white */
+  opacity: 0.8; /* default: 0.5 */
+}
+
+  .footer {
+    background-color: #5c6266;
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    height: 25px;
+    width: 100%;
+  }
+  .footer span {
+    font-size: 13pt; /*  */ 
+    position: absolute;
+    bottom: 1px;
+    width: 100%;
+    height: 30px;
+    background:linear-gradient(to right, #080F52 0, #080F52 33%, #001675 33%, #001675 66%, #2907B3       66%, #2907B3 100%);
+    overflow: hidden;
+  }
+  
+  .wrapper {
+    width: 100%;
+    height: 35px;
+    margin: 100px auto;
+    position: relative;
+    background:linear-gradient(to right, #c4d7e6 0, #c4d7e6 33%, #66a5ad 33%, #66a5ad 66%, #2907B3       66%, #2907B3 100%);
+  }
+
+* {
+  box-sizing: border-box;
+}
+
+  .content1{
+    float: left;
+    width: 33.33%;
+    color: white;
+    padding: 5px;
+  }
+
+
+  .logo{
+    position: absolute;
+    top: -45%;
+    left: 34%;
+    width:12%;
+    -ms-transform: rotate(-45deg); /* IE 9 */
+    -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+    transform: rotate(-45deg);
+  }
+
+  /* Package defaults with slightly modification*/
+a, a > code {
+  color: #cc0033; /* rgb(249, 38, 114) */
+  text-decoration: none;
+}
+
+/* slightly lower and bigger than default */
+.footnote {
+  position: absolute;
+  bottom: 1em;
+  padding-right: 4em;
+  font-size: 95%;
+}
+
+/* important code slightly red */
+.remark-code-line-highlighted {
+  background-color: #FFD3DE !important;
+}
+
+/* color tweak */
+.inverse {
+  background-color: #272822;
+  color: #777872;
+  text-shadow: 0 0 20px #333;
+}
+
+/* slightly spacing change */
+.inverse h1, .inverse h2, .inverse h3 {
+  color: #f3f3f3;
+  line-height: 1.0em;
+}
+
+/* Two-column layout */
+.left-column {
+  color: #282728	;
+  width: 25%;
+  height: 92%;
+  float: left;
+}
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #000;
+}
+.right-column {
+  width: 70%;
+  float: right;
+  padding-top: 0em;
+}
+
+.pull-left {
+  float: left;
+  width: 45%;
+}
+
+.pull-right {
+  float: right;
+  width: 45%;
+}
+
+.pull-right + * {
+  clear: both;
+}
+
+img, video, iframe {
+  max-width: 100%;
+}
+
+blockquote {
+  border-left: solid 5px lightgray;
+  padding-left: 1em;
+}
+
+/* adjust table horizontal spacing */
+th, td {
+    padding:0 15px 0 15px;
+}
+
+.remark-slide table {
+  margin: auto;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+.remark-slide table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+.remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { background: #eee }
+
+/* leave this alone */
+@page { margin: 0; }
+@media print {
+  .remark-slide-scaler {
+    width: 100% !important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~*/
+/* UW-Madison additions */
+/*~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* Title slide */
+
+/* Add image and change bg color */
+  .definition_box {
+    text-align: justify;
+    vertical-align: middle;
+    background-color:#2907B3;
+    color: white;
+    font-weight: normal;
+    font-family: roman;
+    margin: 110px 70px 50px 70px;
+    padding: 5px;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.3) 8px 8px 6px;
+  }
+  
+.title-slide {
+  background-image: url(../../logo/EPN_logo_big.png);
+  background-position: 3% 3%;
+  background-size: 100px;
+  background-color: #fff;
+  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
+}
+
+/* H1 fonts */
+.title-slide h1 {
+  /*color: #cc0033;*/
+  color: white;
+  /*padding-top: 80px;*/
+  font-weight: normal;
+  font-size: 34px;
+  text-align: center;
+  text-shadow: none;
+  /*padding-bottom: 10px;
+  margin-bottom: 10px;
+  margin: 80px 100px 40px 100px;*/
+}
+
+/* H2 fonts */
+.title-slide h2 {
+  color: black;
+  font-size: 30px;
+  text-align: center;
+  font-weight: normal;
+  text-shadow: none;
+  padding-bottom: 20px;
+  margin-top: 0px;
+}
+
+/* H3 fonts */
+.title-slide h3:nth-of-type(1) {
+  font-size: 25px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+  text-shadow: none;
+  padding-bottom: 15px;
+  margin: 25px;
+  line-height: 1;
+}
+.title-slide h3:nth-of-type(2) {
+  font-size: 24px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+  text-shadow: none;
+  padding-bottom: 15px;
+  padding-bottom: 25px;
+  line-height: 1;
+}
+
+.title-slide h3:nth-of-type(3) {
+  font-size: 28px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+  text-shadow: none;
+  line-height: 1;
+}
+
+
+/* Remove slide count shadow */
+.title-slide .remark-slide-number {
+  text-shadow: none;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~*/
+/* Global adjustments */
+/*~~~~~~~~~~~~~~~~~~~~*/
+
+/* Add padding to all slides for 16:9 aspect ratio */
+.remark-slide-content {
+  border-top: 90px solid #2907B3;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em;
+  position: relative;
+}
+
+/* Removes colored bar from top of the slide resulting in a clear slide */
+.clear{
+  border-top: 0px solid #FAFAFA;
+}
+
+
+.slides-demo h1 {
+  background-image: url(../../logo/BUHO_EPN_big.png);
+  background-position: 95% 60%;
+  background-size: 45px;
+  background-repeat: no-repeat;
+  font-weight: normal;
+  font-family: roman;
+  margin-top: -108px;
+  margin-left: -00px;
+  color: #FAFAFA;
+}
+
+
+.slides-demo h2, h3, h4 {
+  padding-top: -15px;
+  padding-bottom: 00px;
+  color: black;
+  text-shadow: none;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 00px;
+  margin-bottom: 0px;
+}
+
+.slides-demo .txt {
+  font-family: 'roman'; 
+  margin-right: 20px;
+  font-size: 20pt;
+  line-height : 30px;
+}
+
+.slides-demo .txt1 {
+  font-family: 'roman'; 
+  font-size: 20pt;
+  line-height : 30px;
+}
+
+.slides-demo .titlebox {
+  font-family: 'roman'; 
+  font-size: 30pt;
+  font-weight: normal;
+  color: white;
+}
+
+
+ .definition_box1 {
+    font-weight: normal;
+    font-family: roman;
+    box-shadow: rgba(0, 0, 0, 0.25) 5px 6px 4px;
+    border-radius: 8px;
+}
+.childA {
+  background: rgba(23, 46, 132, 1);
+  height:30%;
+  width: 100%;
+  color: white;   
+  vertical-align: middle;
+  font-weight: normal;
+  font-family: roman;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 2px;
+  padding-left: 10px;
+}
+.childB {
+  height:70%;
+  width: 100%;
+  vertical-align: middle;
+  font-weight: normal;
+  font-family: roman;
+  background:linear-gradient(0deg, rgba(231, 233, 239, 1) 97%, rgba(23, 46, 132, 1) 100%); 
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 5px;  
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+ .definition_box2 {
+    font-weight: normal;
+    font-family: roman;
+    background: rgba(231, 233, 239, 1);
+    box-shadow: rgba(0, 0, 0, 0.25) 5px 6px 4px;
+    border-radius: 8px;
+    padding: 5px;  
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+
+.inverse {
+  background-image: url(../../logo/EPN_logo_big_pre1.png);
+  background-position: 50% 20%;
+  background-size: 150px;
+  background-color: #080F52;
+  text-shadow: none;
+}
+
+
+.inverse .remark-slide-number {
+  font-size: 13pt;
+  color: #FAFAFA;
+  opacity: 1;
+}
+
+hr, .mline h1::after {
+  content: '';
+  display: block;
+  border: none;
+  background-color: #9D2924;
+  color: #EB811B;
+  height: 1px;
+}
+
+hr, .mline h1::after {
+  margin: 1em 15px 0 15px;
+}
+
+.mline h1::after {
+  margin: 10px 15px 0 15px;
+}
+
+
+ul {
+  display: block;
+  margin-left: -10px; 
+  font-size: 20pt;   
+  line-height : 30px;  
+  text-align: justify;
+  margin-top: 15px; 
+  margin-bottom: 15px; 
+}
+
+ul li {
+  display: block;
+  position: relative;
+  padding-left: 12px;   
+  margin-bottom: 0px; 
+}
+
+ul li:not(:last-child) {
+  margin-bottom: 8px; 
+}
+
+ul li:before {
+  content: "";
+  position: absolute;
+  margin-top: 0.42em;
+  margin-left: -0.8em;  
+  background-image: linear-gradient(to bottom, #007ff3, #006ee5, #005dd6, #004cc7, #043ab7, #0532ac, #042ba0, #032395, #00248c, #002483, #002479, #002470);
+  border:0.7px solid black;
+  height: 8.5px;
+  width: 8.5px;
+  border-radius: 50%;
+  vertical-align:middle;
+  display: inline-block;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 2px;
+}
+
+
+/* Color adjustments for text */
+
+strong {
+  color: #ea5455;
+}
+
+.bold { font-weight: bold; }
+
+.uw-red{
+  color: #c5050c;
+}
+
+.uw-red-dark{
+  color: #9b0000;
+}
+
+.uw-gray-blue{
+  color: #dadfe1;
+}
+
+.uw-gray-darker{
+  color: #646569;
+}
+
+.uw-gray-darkest{
+  color: #282728;
+}
+
+.uw-anchor-color{
+  color: #0479a8;
+}
+
+.p1-yellow {
+  color: #f9ed69;
+}
+
+.p1-orange {
+  color: #f08a5d;
+}
+
+.p1-darkred {
+  color: #b83b5e;
+}
+
+.p1-purple {
+  color: #6a2c70;
+}
+
+.p2-green {
+  color: #95e1d3;
+}
+
+.p2-blue {
+  color: #769fcd;
+  font-weight: bold;
+}
+
+.p2-yellow {
+  color: #fce38a;
+  font-weight: bold;
+}
+
+.p2-red {
+  color: #f38181;
+}
+
+
+
+/* Font size tags */
+.big {
+  font-size: 1.5em;
+}
+
+/* uw-madison blockquote */
+uw-blockquote {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-left: solid 20px #c5050c;
+  background-color: #dadfe1	;
+  padding: 1em;
+  color: #000000;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+/*~~~~~~~~~~~~~~*/
+/* Highlight    */
+/*~~~~~~~~~~~~~~*/
+
+.highlight-last-item > ul > li, 
+.highlight-last-item > ol > li {
+  opacity: 0.5;
+}
+.highlight-last-item > ul > li:last-of-type,
+.highlight-last-item > ol > li:last-of-type {
+  opacity: 1;
+}
+
+.bold-last-item > ul > li:last-of-type,
+.bold-last-item > ol > li:last-of-type {
+  font-weight: bold;
+}
