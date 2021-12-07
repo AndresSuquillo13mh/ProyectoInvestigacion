@@ -12,7 +12,7 @@ function appendHtml(el, str) {
   }
 }
 
-var modal_html = '<div aria-labelledby="modal-title" class="modal fade" id="modal" role="dialog" tabindex="-1"><div class="modal-dialog" style="width:1200px; heigth:1300px;" role="document"><div class="modal-content"><iframe data-src="" height="105%" width="100%" frameborder="0" style = "vertical-align: middle; display:block; margin-left:-5px;"></iframe></div></div></div>';
+var modal_html = '<div aria-labelledby="modal-title" class="modal fade" id="modal" role="dialog" tabindex="-1"><div class="modal-dialog" style="width:1200px; heigth:1300px;" role="document"><div class="modal-content"><iframe data-src="" height="107%" width="100%" frameborder="0" style = "vertical-align: middle; display:block; margin-left:-2px; margin-right:-2px; margin-top:-2px;"></iframe></div></div></div>';
 
 appendHtml(document.body, modal_html); // "body" has two more children - h1 and span.
 
