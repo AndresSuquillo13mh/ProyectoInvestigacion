@@ -1,0 +1,158 @@
+---
+title: "Credit scoring: aplicando técnicas de regresión logística y modelos aditivos generalizados para una cartera de crédito en una entidad financiera"
+subtitle: ""
+author: 
+  - "Andrés Suquillo LLumiquinga"
+institute: 
+  - "Escuela Politécnica Nacional"
+date: "Diciembre 17, 2021"
+output:
+  xaringan::moon_reader:
+    css: ["default", "conf/css/style.css", "conf/css/fonts.css"]
+    lib_dir: libs   
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:11"
+    seal: false
+---
+
+```{r share-again, echo=FALSE}
+options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
+#xaringanExtra::use_share_again()
+xaringanExtra::use_fit_screen()
+```
+
+
+class: clear, inverse, mline, center, middle
+
+# Datos
+
+---
+
+layout: true
+
+<div class="footer"><span> 
+  <div class="row">
+  <div class="content1"> Jaime Andrés Suquillo Llumiquinga - EPN </div> 
+  <div class="content1"> Proyecto de Investigación </div> 
+  <div class="content1"> Diciembre 17, 2021 </div> 
+  </div>
+</span></div>      
+
+
+
+---
+
+class: slides-demo
+
+# Datos
+
+<h2 style = "margin-top: 60px" > Descripción de la Base de datos </h2>
+
+<img
+  src="logo/database.svg"
+  height="30%"
+  width="30%"
+  style="margin:-80px 620px;
+  position: absolute;"
+/>
+
+--
+- 127,413 Observaciones.
+
+--
+- 61 Variables explicativas.
+
+--
+- Junio de 2016 - Julio de 2017.
+
+--
+<br><br>
+
+La información proviene de tres distintas fuentes:
+<br>
+
+--
+.pull-left[
+* Información sociodemográfica.
+]
+
+--
+<img
+  src="logo/demography.svg"
+  height="15%"
+  width="15%"
+  style="margin:-15px 360px;
+  position: absolute;"
+/>
+
+--
+.pull-right[
+
+* Información interna.
+* Información externa.
+
+<img
+  src="logo/credit-report.svg"
+  height="30%"
+  width="50%"
+  style="margin:-130px 100px;
+  position: absolute;"
+/>
+]
+
+
+
+---
+
+class: slides-demo
+
+# Datos
+
+<h3 style = "margin-bottom: 20px" > Variable dependiente </h3> 
+
+--
+
+$$Calificación =\begin{cases} 1: \textrm{Si el cliente es definido como BUENO} \\ 0: \textrm{Si el cliente es definido como MALO} \end{cases}$$
+
+--
+
+* **BUENO:** Buen pagador, cuya definición se basa en la mora del producto.
+
+--
+* **MALO:** Mal pagador, complemento de la definición del bueno.
+
+--
+
+<h3 style = "margin-bottom: 20px" > Variables independientes </h3> 
+
+
+--
+* Sociodemográficas: Género, Estado civil, Nivel estudios, Edad, Tipo vivienda, Sector, Antigüedad laboral, Cargas familiares, etc.
+
+--
+* Información interna: Amortización del producto de crédito, Máximo atraso de la persona 6 meses atrás hasta la fecha de corte, Riesgo porcentual de la cartera, Porcentaje de la mora sobre el monto, Atraso promedio de la operación desde el desembolso hasta el corte, etc. 
+
+---
+
+class: slides-demo
+
+# Datos
+
+### Variable dependiente
+
+$$Calificación =\begin{cases} 1: \textrm{Si el cliente es definido como BUENO} \\ 0: \textrm{Si el cliente es definido como MALO} \end{cases}$$
+* **BUENO:** Buen pagador, cuya definición se basa en la mora del producto.
+* **MALO:** Mal pagador, complemento de la definición del bueno.
+
+
+<h3 style = "margin-bottom: 20px" > Variables independientes </h3> 
+
+
+* Información externa: Número de Instituciones a las que adeuda, Amortización del producto de crédito de la competencia, El porcentaje de variación de deuda en microcrédito/tarjeta disponible al corte de análisis y el corte de los últimos 6 meses, Edad de la mora ponderada por el valor de cartera en cada corte, etc.
+
+
+
+

@@ -37,7 +37,7 @@ layout: true
   <div class="row">
   <div class="content1"> Jaime Andrés Suquillo Llumiquinga - EPN </div> 
   <div class="content1"> Proyecto de Investigación </div> 
-  <div class="content1"> "Diciembre 17, 2021" </div> 
+  <div class="content1"> Diciembre 17, 2021 </div> 
   </div>
 </span></div>      
 
@@ -49,7 +49,8 @@ class: slides-demo
 
 # Objetivos
 
-<div class="definition_box1" style="margin-top:50px; margin-bottom:20px;">
+--
+<div class="definition_box1" style="margin-top:50px; margin-bottom:30px;">
   <div class="childA">
     <div class="titlebox"> 
   Objetivo General

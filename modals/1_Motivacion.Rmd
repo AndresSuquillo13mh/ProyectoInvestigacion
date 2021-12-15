@@ -37,7 +37,7 @@ layout: true
   <div class="row">
   <div class="content1"> Jaime Andrés Suquillo Llumiquinga - EPN </div> 
   <div class="content1"> Proyecto de Investigación </div> 
-  <div class="content1"> "Diciembre 17, 2021" </div> 
+  <div class="content1"> Diciembre 17, 2021 </div> 
   </div>
 </span></div>      
 
@@ -62,14 +62,14 @@ class: slides-demo
 --
 
 * Concesión de Crédito
---
 
+--
 * Riesgo de Crédito
 
 --
 <br>
 
-<div class="definition_box2" style="margin-top:40px;">
+<div class="definition_box2" style="margin-top:70px;">
 <div class="txt1"> 
 [Aguilar y Camargo, 2004] al respecto señalan: “un elevado número de créditos en
 condición de retraso o de no pago constituyen una de las principales causas de la
@@ -97,17 +97,17 @@ class: slides-demo
 --
 
 * Sistema Financiero
---
 
+--
 * Calificación Crediticia
---
 
+--
 * Credit Scoring 
 
 --
 <br>
 
-<div class="definition_box2">
+<div class="definition_box2" style="margin-top:60px;">
 <div class="txt1"> 
 El credit scoring es un sistema de evaluación crediticia que permite valorar de forma
 automática el riesgo asociado a cada solicitud de crédito. Es capaz de predecir la probabilidad

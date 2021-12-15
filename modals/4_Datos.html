@@ -18,7 +18,7 @@
 
 class: clear, inverse, mline, center, middle
 
-# Objetivos
+# Datos
 
 ---
 
@@ -38,38 +38,111 @@ layout: true
 
 class: slides-demo
 
-# Objetivos
+# Datos
+
+&lt;h2 style = "margin-top: 60px" &gt; Descripción de la Base de datos &lt;/h2&gt;
+
+&lt;img
+  src="logo/database.svg"
+  height="30%"
+  width="30%"
+  style="margin:-80px 620px;
+  position: absolute;"
+/&gt;
 
 --
-&lt;div class="definition_box1" style="margin-top:50px; margin-bottom:30px;"&gt;
-  &lt;div class="childA"&gt;
-    &lt;div class="titlebox"&gt; 
-  Objetivo General
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class="childB"&gt;
-    &lt;div class="txt"&gt; 
-  Comparar dos técnicas estadísticas: Regresión Logística y Modelos Aditivos Generalizados
-que permitirán estimar la probabilidad de incumplimiento de un cliente al momento de la concesión del crédito.
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+- 127,413 Observaciones.
+
+--
+- 61 Variables explicativas.
+
+--
+- Junio de 2016 - Julio de 2017.
+
+--
+&lt;br&gt;&lt;br&gt;
+
+La información proviene de tres distintas fuentes:
+&lt;br&gt;
+
+--
+.pull-left[
+* Información sociodemográfica.
+]
+
+--
+&lt;img
+  src="logo/demography.svg"
+  height="15%"
+  width="15%"
+  style="margin:-15px 360px;
+  position: absolute;"
+/&gt;
+
+--
+.pull-right[
+
+* Información interna.
+* Información externa.
+
+&lt;img
+  src="logo/credit-report.svg"
+  height="30%"
+  width="50%"
+  style="margin:-130px 100px;
+  position: absolute;"
+/&gt;
+]
+
+
+
+---
+
+class: slides-demo
+
+# Datos
+
+&lt;h3 style = "margin-bottom: 20px" &gt; Variable dependiente &lt;/h3&gt; 
 
 --
 
-* Establecer los determinantes del incumplimiento del crédito.
+`$$Calificación =\begin{cases} 1: \textrm{Si el cliente es definido como BUENO} \\ 0: \textrm{Si el cliente es definido como MALO} \end{cases}$$`
 
 --
 
-* Establecer modelos estadísticos robustos mediante la técnica Regresión Logística
-y el algoritmo de Modelos Aditivos Generalizados que permitan comparar empíricamente
-los resultados obtenidos.
+* **BUENO:** Buen pagador, cuya definición se basa en la mora del producto.
+
+--
+* **MALO:** Mal pagador, complemento de la definición del bueno.
 
 --
 
-* Implementar un código en el lenguaje de programación estadístico R que realice
-automáticamente la metodología analítica utilizada en la generación del modelo y
-nos propine resultados óptimos para la toma de decisiones acertadas.
+&lt;h3 style = "margin-bottom: 20px" &gt; Variables independientes &lt;/h3&gt; 
+
+
+--
+* Sociodemográficas: Género, Estado civil, Nivel estudios, Edad, Tipo vivienda, Sector, Antigüedad laboral, Cargas familiares, etc.
+
+--
+* Información interna: Amortización del producto de crédito, Máximo atraso de la persona 6 meses atrás hasta la fecha de corte, Riesgo porcentual de la cartera, Porcentaje de la mora sobre el monto, Atraso promedio de la operación desde el desembolso hasta el corte, etc. 
+
+---
+
+class: slides-demo
+
+# Datos
+
+### Variable dependiente
+
+`$$Calificación =\begin{cases} 1: \textrm{Si el cliente es definido como BUENO} \\ 0: \textrm{Si el cliente es definido como MALO} \end{cases}$$`
+* **BUENO:** Buen pagador, cuya definición se basa en la mora del producto.
+* **MALO:** Mal pagador, complemento de la definición del bueno.
+
+
+&lt;h3 style = "margin-bottom: 20px" &gt; Variables independientes &lt;/h3&gt; 
+
+
+* Información externa: Número de Instituciones a las que adeuda, Amortización del producto de crédito de la competencia, El porcentaje de variación de deuda en microcrédito/tarjeta disponible al corte de análisis y el corte de los últimos 6 meses, Edad de la mora ponderada por el valor de cartera en cada corte, etc.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
