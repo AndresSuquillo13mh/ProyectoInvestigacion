@@ -7,10 +7,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 body { 
-  font-family: 'Roman'; 
+  font-family: Roman; 
   text-align: justify;
-  font-size: 20pt;   
+  font-size: 18pt;
 }
+
+.remark-code, .remark-inline-code { font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+font-size: 12pt;
+line-height: 18px;
+}
+
 
 
 

@@ -3,12 +3,14 @@
 .remark-slide-number {
   color: white; /* white */
   opacity: 0.8; /* default: 0.5 */
+  font-size: 13pt;
+  bottom: 4px;
 }
 
   .footer {
     background-color: #5c6266;
     position: absolute;
-    bottom: 10px;
+    bottom: 5px;
     left: 0px;
     height: 25px;
     width: 100%;
@@ -18,7 +20,7 @@
     position: absolute;
     bottom: 1px;
     width: 100%;
-    height: 30px;
+    height: 25px;
     background:linear-gradient(to right, #080F52 0, #080F52 33%, #001675 33%, #001675 66%, #2907B3       66%, #2907B3 100%);
     overflow: hidden;
   }
@@ -39,7 +41,8 @@
     float: left;
     width: 33.33%;
     color: white;
-    padding: 5px;
+    padding-top: 0px;
+    padding-left: 5px;
   }
 
 
@@ -53,9 +56,8 @@
     transform: rotate(-45deg);
   }
 
-  /* Package defaults with slightly modification*/
 a, a > code {
-  color: #cc0033; /* rgb(249, 38, 114) */
+  color: rgb(249, 38, 114);
   text-decoration: none;
 }
 
@@ -68,9 +70,7 @@ a, a > code {
 }
 
 /* important code slightly red */
-.remark-code-line-highlighted {
-  background-color: #FFD3DE !important;
-}
+.remark-code-line-highlighted     { background-color: #ffff88; }
 
 /* color tweak */
 .inverse {
@@ -248,10 +248,10 @@ th, td { padding: 5px; }
 /* Add padding to all slides for 16:9 aspect ratio */
 .remark-slide-content {
   border-top: 90px solid #2907B3;
-  font-size: 20px;
-  font-weight: 300;
-  line-height: 1.5;
-  padding: 1em 2em 1em 2em;
+  font-size: 18pt;
+  font-weight: normal;
+  line-height: 28px;
+  padding: 1.3em 2em 1em 2em;
   position: relative;
 }
 
@@ -263,23 +263,38 @@ th, td { padding: 5px; }
 
 .slides-demo h1 {
   background-image: url(../../logo/BUHO_EPN_big.png);
-  background-position: 95% 60%;
+  background-position: 100% 60%;
   background-size: 45px;
+  font-size: 48px;
   background-repeat: no-repeat;
   font-weight: normal;
   font-family: roman;
-  margin-top: -108px;
+  padding-top: 28px;
+  padding-bottom: 18px;
+  margin-top: -115px;
+  margin-bottom: -5px;
   margin-left: -00px;
   color: #FAFAFA;
 }
 
 
-.slides-demo h2, h3, h4 {
+.slides-demo h2 {
   padding-top: -15px;
-  padding-bottom: 00px;
+  padding-bottom: 15px;
   color: black;
   text-shadow: none;
-  font-weight: bold;
+  font-weight: normal;
+  text-align: left;
+  margin-left: 00px;
+  margin-bottom: 0px;
+}
+
+.slides-demo h3, h4 {
+  padding-top: -15px;
+  padding-bottom: 3px;
+  color: black;
+  text-shadow: none;
+  font-weight: normal;
   text-align: left;
   margin-left: 00px;
   margin-bottom: 0px;
@@ -288,21 +303,23 @@ th, td { padding: 5px; }
 .slides-demo .txt {
   font-family: 'roman'; 
   margin-right: 20px;
-  font-size: 20pt;
+  font-size: 18pt;
   line-height : 30px;
 }
 
 .slides-demo .txt1 {
   font-family: 'roman'; 
-  font-size: 20pt;
+  font-size: 18pt;
   line-height : 30px;
 }
 
 .slides-demo .titlebox {
   font-family: 'roman'; 
-  font-size: 30pt;
+  font-size: 28pt;
   font-weight: normal;
   color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 
@@ -322,7 +339,7 @@ th, td { padding: 5px; }
   font-family: roman;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  padding: 2px;
+  padding: 5px;
   padding-left: 10px;
 }
 .childB {
@@ -390,11 +407,11 @@ hr, .mline h1::after {
 ul {
   display: block;
   margin-left: -10px; 
-  font-size: 20pt;   
+  font-size: 18pt;   
   line-height : 30px;  
   text-align: justify;
   margin-top: 15px; 
-  margin-bottom: 15px; 
+  margin-bottom: -5px; 
 }
 
 ul li {
@@ -423,21 +440,37 @@ ul li:before {
   box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 2px;
 }
 
+table, th, td {
+  border:1px solid black;
+  border-collapse: collapse;
+  text-overflow: "-";
+}
+
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+ul.no-bullets {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
 /* Color adjustments for text */
 
 strong {
-  color: #ea5455;
+  color: #000000;
 }
 
 .bold { font-weight: bold; }
 
 .uw-red{
-  color: #c5050c;
+  color: #000000;
 }
 
 .uw-red-dark{
-  color: #9b0000;
+  color: #000000;
 }
 
 .uw-gray-blue{
@@ -504,7 +537,7 @@ uw-blockquote {
   margin-bottom: 1em;
   margin-left: 40px;
   margin-right: 40px;
-  border-left: solid 20px #c5050c;
+  border-left: solid 20px #000000;
   background-color: #dadfe1	;
   padding: 1em;
   color: #000000;
