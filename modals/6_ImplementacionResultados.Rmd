@@ -192,9 +192,9 @@ En este paso el algoritmo realiza la selección de variables explicativas emplea
 
 --
 
-<h3 style = "margin-bottom: 15px; margin-top: -5px;" > Construcción del modelo logístico aditivo generalizado </h3>
+<h3 style = "margin-bottom: 15px; margin-top: 25px;" > Construcción del modelo logístico aditivo generalizado </h3>
 
-<div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"> 
+<div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"> 
 El modelo logístico aditivo generalizado óptimo se lo construye suavizando las variables explicativas cuantitativas mediante <b>splines cúbicos de regresión</b> y el número de nodos adecuado.
 </div>
 
