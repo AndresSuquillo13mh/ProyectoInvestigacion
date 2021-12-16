@@ -102,7 +102,7 @@ Análisis Univariado o Estadística Descriptiva de cada una de las variables exp
 
 --
 
-<h4 style = "margin-bottom: 0px; margin-top: -10px;" >  <b>Depuración de los datos</b> </h4>  
+<h4 style = "margin-bottom: 0px; margin-top: 15px;" >  <b>Depuración de los datos</b> </h4>  
 
 <div class="txt1" style = "margin-top: 10px; margin-bottom: -5px"> 
 Luego de la exploración de los datos corresponde realizar su tratamiento, comenzando con la depuración de los mismos. Se procede como sigue:
