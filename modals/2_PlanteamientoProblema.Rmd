@@ -57,10 +57,10 @@ class: slides-demo
   position: absolute;"
 />
 
-
+--
 <div class="definition_box2" style="margin-top:365px;">
 <div class="txt1"> 
-La regresión logística es el modelo estadístico más utilizado en la industria de calificación crediticia. A pesar de sus ventajas en la fácil interpretación y el bajo costo computacional, la regresión logística está bajo la crítica de la dificultad de modelar las características no lineales, del efecto de los predictores sobre la variable dependiente y, por lo tanto, podría dar lugar a resultados insatisfactorios.
+La regresión logística es el modelo estadístico más utilizado en la industria de calificación crediticia. A pesar de sus ventajas en la fácil interpretación y el bajo costo computacional, la regresión logística está bajo la crítica de la dificultad de modelar las características no lineales de los predictores sobre la variable dependiente y, por lo tanto, podría dar lugar a resultados insatisfactorios.
 </div>
 </div>
 

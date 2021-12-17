@@ -49,13 +49,13 @@ class: slides-demo
 
 # Datos
 
-<h2 style = "margin-top: 60px" > Descripción de la Base de datos </h2>
+<h3 style = "margin-top: 35px; margin-bottom: -5px" > Descripción de la Base de datos </h3>
 
 <img
   src="logo/database.svg"
   height="30%"
   width="30%"
-  style="margin:-80px 620px;
+  style="margin:-60px 620px;
   position: absolute;"
 />
 
@@ -69,10 +69,21 @@ class: slides-demo
 - Junio de 2016 - Julio de 2017.
 
 --
-<br><br>
 
+<h4 style = "margin-top: 20px; margin-bottom: -10px" > <b>Variable dependiente</b> </h4> 
+
+--
+
+$$Calificación =\begin{cases} 1: \textrm{Si el cliente es definido como BUENO} \\ 0: \textrm{Si el cliente es definido como MALO} \end{cases}$$
+
+--
+
+<h4 style = "margin-top: -5px; margin-bottom: 0px" > <b>Variables Independientes</b> </h4> 
+
+--
+<div class="txt1" style = "margin-top: 15px; margin-bottom: 15px"> 
 La información proviene de tres distintas fuentes:
-<br>
+</div>
 
 --
 .pull-left[
@@ -104,55 +115,6 @@ La información proviene de tres distintas fuentes:
 />
 ]
 
-
-
----
-
-class: slides-demo
-
-# Datos
-
-<h3 style = "margin-bottom: 20px" > Variable dependiente </h3> 
-
---
-
-$$Calificación =\begin{cases} 1: \textrm{Si el cliente es definido como BUENO} \\ 0: \textrm{Si el cliente es definido como MALO} \end{cases}$$
-
---
-
-* **BUENO:** Buen pagador, cuya definición se basa en la mora del producto.
-
---
-* **MALO:** Mal pagador, complemento de la definición del bueno.
-
---
-
-<h3 style = "margin-bottom: 20px" > Variables independientes </h3> 
-
-
---
-* Sociodemográficas: Género, Estado civil, Nivel estudios, Edad, Tipo vivienda, Sector, Antigüedad laboral, Cargas familiares, etc.
-
---
-* Información interna: Amortización del producto de crédito, Máximo atraso de la persona 6 meses atrás hasta la fecha de corte, Riesgo porcentual de la cartera, Porcentaje de la mora sobre el monto, Atraso promedio de la operación desde el desembolso hasta el corte, etc. 
-
----
-
-class: slides-demo
-
-# Datos
-
-### Variable dependiente
-
-$$Calificación =\begin{cases} 1: \textrm{Si el cliente es definido como BUENO} \\ 0: \textrm{Si el cliente es definido como MALO} \end{cases}$$
-* **BUENO:** Buen pagador, cuya definición se basa en la mora del producto.
-* **MALO:** Mal pagador, complemento de la definición del bueno.
-
-
-<h3 style = "margin-bottom: 20px" > Variables independientes </h3> 
-
-
-* Información externa: Número de Instituciones a las que adeuda, Amortización del producto de crédito de la competencia, El porcentaje de variación de deuda en microcrédito/tarjeta disponible al corte de análisis y el corte de los últimos 6 meses, Edad de la mora ponderada por el valor de cartera en cada corte, etc.
 
 
 

@@ -67,14 +67,14 @@ class: slides-demo
 * Riesgo de Crédito
 
 --
+* Sistema Financiero
+
+--
 <br>
 
 <div class="definition_box2" style="margin-top:70px;">
 <div class="txt1"> 
-[Aguilar y Camargo, 2004] al respecto señalan: “un elevado número de créditos en
-condición de retraso o de no pago constituyen una de las principales causas de la
-insolvencia y descapitalización; lo que finalmente atenta contra la solidez y sostenimiento
-de la institución en el largo plazo”.
+[Aguilar y Camargo, 2004] al respecto señalan: “un elevado número de créditos en condición no pago constituyen una de las principales causas de la insolvencia y descapitalización; lo que finalmente atenta contra la solidez y sostenimiento de la institución en el largo plazo”.
 </div>
 </div>
 
@@ -111,8 +111,7 @@ class: slides-demo
 <div class="txt1"> 
 El credit scoring es un sistema de evaluación crediticia que permite valorar de forma
 automática el riesgo asociado a cada solicitud de crédito. Es capaz de predecir la probabilidad
-de no pago de los clientes con sus obligaciones y la severidad de las pérdidas
-en caso de incumplimiento [Elizondo, 2003].
+de no pago de los clientes y las pérdidas en caso de incumplimiento [Elizondo, 2003].
 </div>
 </div>
 

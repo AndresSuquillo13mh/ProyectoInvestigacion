@@ -49,7 +49,7 @@ capacidad que posee R en la ciencia de datos.
 &lt;/div&gt;
 
 --
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
+&lt;div class="txt1" style = "margin-top: 35px; margin-bottom: 0px"&gt; 
 En el siguiente flujograma se describen los pasos principales de la &lt;b&gt;Metodología Analítica&lt;/b&gt; que forman parte del algoritmo:
 &lt;/div&gt;
 
@@ -58,7 +58,7 @@ En el siguiente flujograma se describen los pasos principales de la &lt;b&gt;Met
 &lt;img
   src="logo/flujograma.png"
   height="45%"
-  width="80%"
+  width="75%"
   style="display: block;
   margin-left: auto;
   margin-right: auto;
@@ -70,119 +70,6 @@ En el siguiente flujograma se describen los pasos principales de la &lt;b&gt;Met
 class: slides-demo
 
 #  Implementación del Algoritmo
-
-
-&lt;h3 style = "margin-bottom: 25px" &gt; Análisis exploratorio y tratamiento de datos &lt;/h3&gt;
-
-&lt;div class="txt1" style = "margin-top: -10px; margin-bottom: -15px"&gt; 
-Los primeros pasos a ejecutarse corresponden a los relacionados al análisis exploratorio de los datos y tratamiento de los mismos.
-&lt;/div&gt;
-
---
-&lt;h4 style = "margin-bottom: 0px" &gt; &lt;b&gt;Análisis Univariado&lt;/b&gt; &lt;/h4&gt;  
-
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: -15px"&gt; 
-Análisis Univariado o Estadística Descriptiva de cada una de las variables explicativas. 
-&lt;/div&gt;
-
---
-
-* **Medidas de tendencia central, posicionamiento y dispersión:** Para las variables cuantitativas.
-
---
-* **Tablas de frecuencia:** Para las variables cualitativas.
-
---
-
-&lt;h4 style = "margin-bottom: 0px; margin-top: 15px;" &gt;  &lt;b&gt;Depuración de los datos&lt;/b&gt; &lt;/h4&gt;  
-
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: -5px"&gt; 
-Luego de la exploración de los datos corresponde realizar su tratamiento, comenzando con la depuración de los mismos. Se procede como sigue:
-&lt;/div&gt;
-
---
-
-* **Completitud:** En este paso el algoritmo imputa los valores perdidos.
-
---
-* **Consistencia:** Se corrige las variables que no cumplan con su regla semántica.
-
---
-* **Variables constantes:** En caso de existir variables constantes se las elimina.
-
----
-
-class: slides-demo
-
-#  Implementación del Algoritmo
-
-&lt;h3 style = "margin-bottom: 25px" &gt; Análisis exploratorio y tratamiento de datos &lt;/h3&gt;
-
-&lt;h4 style = "margin-bottom: 0px; margin-top: 20px;" &gt; &lt;b&gt;Análisis y tratamiento de valores atípicos&lt;/b&gt; &lt;/h4&gt;  
-
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: -5px"&gt; 
-Lo que sigue es realizar el análisis y tratamiento de valores atípicos:
-&lt;/div&gt;
-
---
-
-* A las variables numéricas seleccionadas se les realiza un estudio, analizando y tratando todos los valores atípicos que se encuentren.
-
---
-* Se tratan los valores atípicos mediante el método conocido como **Winsorización**.
-
---
-
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: -5px"&gt; 
-Se hace uso de la Winsorización del `90 \%`.
-&lt;/div&gt;
-
-
----
-
-class: slides-demo
-
-#  Implementación del Algoritmo
-
-&lt;h3 style = "margin-bottom: 25px" &gt; Selección de Muestras: Desarrollo y Validación &lt;/h3&gt;
-
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: -5px"&gt; 
-dividir la muestra total seleccionada en el mes de observación en dos submuestras: muestra de desarrollo y validación con la proporción `(70\%`/`30\%)`,
-&lt;/div&gt;
-
---
-
-&lt;h3 style = "margin-bottom: 25px" &gt; Categorización de variables &lt;/h3&gt;
-
-Esta categorización se realiza mediante árboles de decisión con grupos de al menos el `\(5 \%\)` de observaciones de la muestra total en cada nodo, el algoritmo categoriza:
-
---
-
-* Variables cualitativas que posean `\(5\)` o más categorías. 
-
---
-* Variables cuantitativas que posean un valor cuya frecuencia relativa sea mayor o igual al `\(20 \%\)`. 
-
----
-
-class: slides-demo
-
-#  Implementación del Algoritmo
-
-&lt;h3 style = "margin-bottom: 15px" &gt; Selección de variables &lt;/h3&gt;
-
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: -5px"&gt; 
-En este paso el algoritmo realiza la selección de variables explicativas empleando las siguientes metodologías.
-&lt;/div&gt;
-
---
-
-* **Medidas de separación:** Se calcula el valor de la prueba de Kolmogórov-Smirnov (Test KS) para cada una de las variables cuantitativas.
-
---
-* **Medidas de asociación:** Se calcula el valor de información (VI) para cada una de las variables cualitativas.
-
---
 
 &lt;h3 style = "margin-bottom: 15px; margin-top: 25px;" &gt; Construcción del modelo logístico aditivo generalizado &lt;/h3&gt;
 
@@ -206,7 +93,7 @@ class: slides-demo
 &lt;h3 style = "margin-bottom: 15px" &gt; Resultados y evaluación del modelo &lt;/h3&gt;
 
 &lt;div class="txt1" style = "margin-top: 10px; margin-bottom: -5px"&gt; 
-El algoritmo calcula los estadísticos: AUC, KS y coeficiente de GINI (Medidas de discriminación), la matriz de confusión y la tabla de desempeño.
+El algoritmo calcula los estadísticos: AUC, KS y coeficiente de GINI (Medidas de discriminación), la matriz de confusión y el gráfico de deciles.
 &lt;/div&gt;
 
 --

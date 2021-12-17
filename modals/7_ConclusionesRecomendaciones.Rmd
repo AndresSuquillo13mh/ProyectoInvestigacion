@@ -50,18 +50,14 @@ class: slides-demo
 
 # Conclusiones 
 
-<div class="definition_box2" style="margin-top:40px;">
+<div class="definition_box2" style="margin-top:120px;">
 <div class="txt1" style="margin-bottom:8px;">
 <ul>
 <li>
-El mejor modelo logístico aditivo generalizado `(GAM-2)` emplea splines cúbicos de regresión para suavizar las variables cuantitativas no lineales. Además, se eligieron `12` nodos para la variable <i>V31_AtrasoMax_U6_AC</i> y `6` nodos para la variable <i>V81_Amortizacion_comp</i>, estos nodos dividen a la variable en `13` y `7` secciones respectivamente y en cada sección se ajusta una spline cúbica de regresión (polinomio de grado 3)
-
-</li>
-<li>
-Los modelos aditivos generalizados nos permiten construir un modelo con un mejor estadístico de Kolmogórov-Smirnov (KS), índice AUC y coeficiente de Gini (GINI) que los modelos que emplean una regresión logística bajo el primer método `(RL-M1)` y bajo el segundo método `(RL-M2)`, (Método tradicional)
-</li>
-<li>
 Los tres modelos son adecuados ya que la tasa de clientes Buenos en cada intervalo de probabilidad aumenta cuando la probabilidad aumenta y lo hace con un crecimiento estricto, capturando porcentajes mayores en los deciles más altos. Sin embargo, la tasa de clientes Buenos del modelo `(GAM-2)` presenta un ordenamiento más parsimonioso, por lo que segmenta de mejor manera a los clientes Buenos.
+</li>
+<li>
+Lo ideal es obtener reglas explícitas que determinen la probabilidad de buen pagador de un cliente. Por tal motivo el modelo `(RL-M1)`, regresión logística construida a partir del mismo conjunto de variables que ingresan al modelo `(GAM-2)` y el que más se aproxima, se puede considerar como una buena opción cuando el negocio desee obtener reglas explícitas que determinen la probabilidad de buen pagador.
 </li>
 </ul>
 </div>
@@ -74,18 +70,14 @@ class: slides-demo
 
 # Conclusiones 
 
-<div class="definition_box2" style="margin-top:40px;">
+<div class="definition_box2" style="margin-top:120px;">
 <div class="txt1" style="margin-bottom:8px;">
 <ul>
 <li>
-Lo ideal es obtener reglas explícitas que determinen la probabilidad de buen pagador de un cliente. Por tal motivo el modelo `(RL-M1)`, regresión logística construida a partir del mismo conjunto de variables que ingresan al modelo `(GAM-2)` y el que más se aproxima, se puede considerar como una buena opción cuando el negocio desee obtener reglas explícitas que determinen la probabilidad de buen pagador.
-
-</li>
-<li>
-El conjunto final de variables que ingresan al modelo logístico aditivo generalizado `(GAM-2)` es diferente al conjunto de variables que ingresan al modelo de regresión logística <b>tradicional</b> `(RL-M2)`, lo que nos permite concluir que los modelos aditivos generalizados son una herramienta útil para realizar selección de variables cuantitativas, ya que se obtienen mejores resultados al momento de perfilar a los clientes.
-</li>
-<li>
 El modelo logístico aditivo generalizado permite modelar de manera flexible las relaciones no lineales sin realizar ninguna suposición sobre la forma funcional de `f`, esto ofrece una mejor predicción sin perder su capacidad interpretativa. Por lo que, usar un modelo `GAM` puede resultar más sencillo.
+</li>
+<li>
+El conjunto final de variables que ingresan al modelo logístico aditivo generalizado `(GAM-2)` es diferente al conjunto de variables que ingresan al modelo de <b>regresión logística tradicional</b> `(RL-M2)`, lo que nos permite concluir que los modelos aditivos generalizados son una herramienta útil para realizar selección de variables cuantitativas, ya que se obtienen mejores resultados al momento de perfilar a los clientes.
 </li>
 </ul>
 </div>
@@ -97,14 +89,11 @@ class: slides-demo
 
 # Recomendaciones 
 
-<div class="definition_box2" style="margin-top:40px;">
+<div class="definition_box2" style="margin-top:90px;">
 <div class="txt1" style="margin-bottom:8px;">
 <ul>
 <li>
 En la actualidad existen metodologías como los modelos aditivos generalizados que logran mejores predicciones y aún se pueden comprender y explicar por qué hacen las predicciones que hacen. Metodologías no tradicionales que se recomienda sean utilizadas en la construcción de modelos estadísticos robustos.
-</li>
-<li>
-Enriquecer las bases de datos que poseen las instituciones financieras es una buena práctica para obtener modelos estadísticos con mayor poder predictivo y de discriminación.
 </li>
 <li>
 En estudios futuros se podría profundizar en el uso de modelos aditivos generalizados orientados a la categorización de variables cuantitativas para que esta categorización pueda ser empleada en la construcción de modelos estadísticos bajo diferentes técnicas.

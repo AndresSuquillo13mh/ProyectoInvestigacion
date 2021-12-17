@@ -40,34 +40,865 @@ layout: true
 }
 &lt;/style&gt;
 
+
 ---
 
 class: slides-demo
 
+# Modelo de regresión logística - logit
 
-# Naturaleza de los modelos 
-&lt;br&gt;
-&lt;div class="txt1" style = "margin-top: 5px; margin-bottom: -5px"&gt; 
-Un modelo &lt;i&gt;Credit Score&lt;/i&gt; se puede aplicar según la etapa del ciclo de vida de un crédito. 
+&lt;h3 style = "margin-bottom: -10px" &gt; Introducción &lt;/h3&gt;  
+
+--
+La modelación estadística permite explicar la relación entre una **variable dependiente** `\(Y\)`, y un conjunto de `\(p\)` **variables independientes** `\({ X }_{ 1 },{ X }_{ 2 },\dots ,{ X }_{ p }\)`.
+
+--
+`\begin{align}
+Y&amp;=f\left( { X }_{ 1 },{ X }_{ 2 },\dots ,{ X }_{ p } \right)+\epsilon,\tag{1}
+\end{align}`
+
+donde: 
+
+--
+* `\(f:\)` función desconocida fija de `\({ X }_{ 1 },{ X }_{ 2 },\dots ,{ X }_{ p }\)`. 
+
+--
+* `\(\epsilon:\)` término de error aleatorio.
+
+--
+
+&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 0px"&gt; 
+Con ayuda de modelos estadísticos se estima una función `f` que satisfaga la igualdad `(1)`.
+&lt;/div&gt;
+
+
+
+
+---
+
+class: slides-demo
+
+# Modelo de regresión logística - logit
+
+&lt;h3 style = "margin-bottom: 0px" &gt; Modelos paramétricos &lt;/h3&gt;  
+
+--
+&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 20px"&gt; 
+Asumen que la función `f` tiene una forma funcional específica.
+&lt;/div&gt;
+
+
+--
+* Se realiza un supuesto sobre la forma funcional de `\(f\)`.
+
+--
+
+`\begin{align}
+    f\left( X \right) &amp;={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ X }_{ 1 }+{ \beta  }_{ 2 }{ X }_{ 2 }+\dots +{ \beta  }_{ p }{ X }_{ p }\tag{2}
+\end{align}`
+
+--
+* Para el ajuste del modelo lineal `\(\left(2\right)\)`, se necesita estimar los `\(p+1\)` parámetros `\({ \beta  }_{ 0 },{ \beta  }_{ 1 },\dots ,{ \beta  }_{ p }\)`,
+
+
+`\begin{align}
+    \hat{Y} &amp;\approx { \hat { \beta  }   }_{ 0 }+{ \hat { \beta  } }_{ 1 }{ X }_{ 1 }+{ \hat { \beta  } }_{ 2 }{ X }_{ 2 }+\dots +{ \hat { \beta  } }_{ p }{ X }_{ p }, \tag{3}
+\end{align}`
+
+
+--
+El **Modelo Lineal Generalizado** generaliza el modelo lineal clásico, de manera que la variable dependiente `\(Y\)` está relacionada linealmente con las variables explicativas mediante una determinada función de enlace (Función Link). Estos modelos forman parte del enfoque paramétrico e incluyen el **Modelo de regresión logística múltiple**.
+
+---
+
+class: slides-demo
+
+# Modelo de regresión logística - logit
+
+&lt;div class="txt1" style = "margin-top: 30px; margin-bottom: 10px"&gt; 
+&lt;b&gt;Modelo logit&lt;/b&gt; se utiliza para predecir la probabilidad de una variable dependiente categórica, en nuestro caso binaria: Bueno `(1)` y Malo `(0)`.
 &lt;/div&gt;
 
 --
-* Scoring de originación
+
+&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 3px"&gt; 
+Para describir el modelo, consideremos:  
+&lt;/div&gt;
 
 --
-* Scoring de comportamiento
+* `\(n:\)` Número de individuos en una muestra aleatoria.
+
+--
+* `\(p:\)` Número de varibles explicativas o independientes.
+
+--
+* `\(X=\left( X_{ 1 },X_{ 2 },...,{ X }_{ p } \right):\)` Conjunto de `\(p\)` variables independientes.
+
+--
+* `\(X_{ i }=\left(1, { x }_{ i1 }, { x }_{ i2 },\dots { x }_{ ip } \right):\)` Vector de características del individuo `\(i\)`, donde `\({ x }_{ ij }\)` es el valor de la variable `\(j=1,2,\dots ,p\)` en el individuo `\(i=1,2,\dots ,n\)`.
+
+--
+* `\(Y=\left( y_{ 1 },y_{ 2 },...,y_{ n } \right):\)` La variable dependiente, donde `\({ y }_{ i }\)` es el valor de la variable `\(Y\)` en el individuo `\(i\)`. El valor `\({ y }_{ i }\)`, representa lo siguiente: 
+
+`$$y_i =\begin{cases} 1: \textrm{Si el individuo i es etiquetado como Bueno} \\ 0: \textrm{Si el individuo i es etiquetado como Malo.} \end{cases}\tag{4}$$`
+
+--
+* `\(\beta =\left( { \beta  }_{ 0 },{ \beta  }_{ 1 },{ \beta  }_{ 2 },\dots ,{ \beta  }_{ p } \right) :\)` Vector de `\(p+1\)` parámetros (constantes) desconocidos.
+
+---
+
+class: slides-demo
+
+# Modelo de regresión logística - logit
+
+&lt;div class="txt1" style = "margin-top: 35px; margin-bottom: 15px"&gt; 
+La base del &lt;b&gt;Modelo Logit&lt;/b&gt; es la función de distribución logística, y está definida de la siguiente manera: &lt;/div&gt;
+
+--
+`\begin{align}
+    { \pi  }_{ i }&amp;=Pr\left( { y }_{ i }=1|{ X }_{ i } \right) =\frac { 1 }{ 1+exp\left( -{ \tau  }_{ i } \right)  } ,\quad -\infty &lt;{ \tau  }_{ i }&lt;\infty ,\quad i=1,2,\dots, n\tag{5}    
+\end{align}`
+
+--
+con,
+
+--
+`\begin{align*}
+    { \tau  }_{ i }&amp;={ { X } }_{ i }^{ T }\beta ={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i1 }+{ \beta  }_{ 2 }{ x }_{ i2 }+\dots +{ \beta  }_{ p }{ x }_{ ip }.
+\end{align*}`
+
+Donde:
+
+--
+* `\({ \pi  }_{ i }:\)` Permite encontrar la probabilidad de que el individuo `\(i\)` sea etiquetado como `\(Bueno\)`, tomando en cuenta las características `\({ X }_{ i }\)` que posee. El rango de esta función está en el intervalo `\(\left[ 0,1 \right]\)`
 
 --
 
-Los modelos que son objeto de estudio tienen como objetivo principal estimar la probabilidad
-de incumplimiento de un cliente que cuenta con historial crediticio.
+El modelo tiene como objetivo estimar los coeficientes `\({ \beta }\)` que mejor se ajusten a la ecuación `\(\left(5\right)\)`.
+
+---
+
+class: slides-demo
+
+# Modelo de regresión logística - logit
+
+&lt;div class="txt1" style = "margin-top: 35px; margin-bottom: 0px"&gt; 
+Despejando `\tau_{ i }` de `(5)` se obtiene la igualdad conocida como &lt;b&gt;Modelo logit&lt;/b&gt;.
+&lt;/div&gt;
 
 --
 
-`$$Y =\begin{cases} 1: \textrm{Si el cliente es definido como BUENO} \\ 0: \textrm{Si el cliente es definido como MALO} \end{cases}$$`
+`\begin{align}
+   { \tau  }_{ i }= logit\left( { \pi  }_{ i } \right) =\ln { \left( \frac { { \pi  }_{ i } }{ 1-{ \pi  }_{ i } }  \right)  } ={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i1 }+{ \beta  }_{ 2 }{ x }_{ i2 }+\dots +{ \beta  }_{ p }{ x }_{ ip }\tag{6}
+\end{align}`
 
 --
-Los modelos propuestos buscan estimar la probabilidad de que la variable `\(Y\)` tome valores en el conjunto `\(\{0, 1\}\)`, a partir del conjunto de las variables independientes.
+
+&lt;div class="txt1" style = "margin-top: -5px; margin-bottom: 10px"&gt; 
+A la ecuación `(6)` se la conoce como razón de probabilidades `(odds` `ratio)`. La función &lt;i&gt;logística&lt;/i&gt; `(5)` puede ser representada gráficamente:
+&lt;/div&gt;
+
+
+--
+&lt;figure style = "margin-top: 0px; margin-bottom: 0px"&gt;
+&lt;figcaption style="text-align: center;"&gt;Fig.1 - Función logística.&lt;/figcaption&gt;
+  &lt;img
+  src="logo/logit.png"
+  height="30%"
+  width="60%"
+  style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom:5px;"
+/&gt;
+&lt;/figure&gt;
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-bottom: 0px" &gt; Modelos no paramétricos &lt;/h3&gt;  
+
+--
+
+* Antes de ajustar la función `\(f\)` no realiza suposición alguna sobre la forma funcional de la misma.
+
+--
+* Se pueden usar funciones suaves en la búsqueda de la función `\(f\)`
+
+--
+* El riesgo que se asume con estos modelos, es el fenómeno conocido como sobreajuste.
+
+--
+* Pueden conducir a estimaciones muy complejas de `\(f\)`.
+
+--
+
+&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 0px"&gt; 
+El &lt;b&gt;Modelo Aditivo Generalizado&lt;/b&gt; ofrece un punto medio:
+&lt;/div&gt;
+
+--
+* Se adapta a relaciones complejas y no lineales.
+
+--
+* Mantiene la aditividad, haciendo uso de elementos paramétricos y no paramétricos.
+
+--
+* Hace buenas predicciones, y aún permite realizar estadísticas inferenciales.
+
+--
+* Se comprende y se puede explicar el porqué de las predicciones que hace. 
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;div class="definition_box2" style = "margin-top: 35px; margin-bottom: 15px"&gt;
+&lt;div class="txt1"&gt;
+El &lt;b&gt;Modelo Aditivo Generalizado&lt;/b&gt;, es una extensión de los Modelos Lineales Generalizados (GLM) al permitir funciones no lineales en cada una de las variables explicativas, mientras se mantiene la aditividad.
+&lt;/div&gt;
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
+La estructura del modelo toma la siguiente forma:
+&lt;/div&gt;
+
+`\begin{align}
+    g\left( { u }_{ i } \right) ={ { { X } }_{ i }^{ { \ast  } } }\theta +{ f }_{ 1 }\left( { x }_{ i1 } \right) +{ f }_{ 2 }\left( { x }_{ i2 } \right) +{ f }_{ 3 }\left( { x }_{ i3 } \right) +\dots  \tag{7}
+\end{align}`
+
+&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 0px"&gt; 
+donde:
+&lt;/div&gt;
+
+--
+* `\({ u }_{ i }\equiv \mathbb{E}\left( { Y }_{ i } \right)\)` con `\({ Y }_{ i }\sim\)` alguna distribución de la Familia Exponencial.
+
+--
+* `\(g\left(  \right)\)` es la función de enlace.
+
+--
+* `\({ { X } }_{ i }^{ { \ast  } }\)` es la `\(i-\acute{e}sima\)` fila de la matriz del modelo correspondiente a las variables explicativas paramétricas.
+
+--
+* `\(\theta\)` es el vector de coeficientes correspondiente.
+
+--
+* `\({ f }_{ j }\)` son las funciones suaves de las variables que se modelan no paramétricamente.
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;div class="txt1" style = "margin-top: 35px; margin-bottom: 0px"&gt; 
+Esta flexibilidad lleva consigo dos necesidades:
+&lt;/div&gt;
+
+--
+
+* Cómo representar las funciones suaves.
+
+--
+* Cómo suavizar estas funciones.
+
+--
+
+&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 0px"&gt; 
+Algunos de los métodos de suavizamiento son: 
+&lt;/div&gt;
+
+--
+
+**Splines de suavizado, splines de regresión, etc.**
+
+--
+* Se pueden expresar utilizando expansiones de base. 
+
+--
+* La estimación con splines de regresión se realiza mediante PIRLS (mínimos cuadrados reponderados iterativamente penalizados).
+
+--
+
+**Suavizamiento por núcleos (Kernel Smoothing) y regresión polinomial local (LOESS)**
+
+--
+* No se pueden expresar mediante la expansión de base.
+
+--
+* La estimación, se realiza mediante el algoritmo backfitting (Breiman y Friedman, 1985).
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-bottom: 0px" &gt; Suavizado Univariante - Funciones de Base &lt;/h3&gt;  
+
+--
+&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 0px"&gt; 
+La ecuación `(7)` simplificada a una función suave como regresor es igual a:
+&lt;/div&gt;
+
+--
+
+`\begin{align}
+    { y }_{ i }=f\left( x_{ i } \right) +{ \epsilon  }_{ i },\quad i=1,2,\dots ,n \tag{8}
+\end{align}`
+
+&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: 10px"&gt; 
+donde:
+&lt;/div&gt;
+
+--
+
+* `\({ y }_{ i }:\)` Variable dependiente.
+
+--
+* `\(x_{ i }:\)` Variable explicativa (regresor).
+
+--
+* `\(f:\)` Una función suave.
+
+--
+* `\({ \epsilon  }_{ i }:\)` Error aleatorio idénticamente distribuido con distribución `\(N\left( 0,{ \sigma  }^{ 2 } \right)\)`.
+
+--
+
+&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
+Para convertir la ecuación `(8)` en un modelo lineal, es necesario elegir una base. Para lo cual, se define:
+&lt;/div&gt;
+
+--
+
+* `\({ b }_{ j }:\)` Espacio de **funciones base** de dimensión `\(q+1\)` en donde `\(f\)` (o una buena aproximación), esté presente.
+
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-bottom: 0px" &gt; Suavizado Univariante - Funciones de Base &lt;/h3&gt;  
+
+--
+&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 0px"&gt; 
+[Wood, Simon N., 2017], define esta base mediante una combinación lineal entre algunas &lt;b&gt;funciones básicas&lt;/b&gt; conocidas y un vector de parámetros desconocidos `\beta`, con lo cual `f` toma la siguiente forma:
+&lt;/div&gt;
+
+
+--
+
+`\begin{align}
+f\left( x \right) =\sum _{ j=0 }^{ q }{ { b }_{ j }\left( x \right) { \beta  }_{ j } } \tag{9}
+\end{align}`
+
+--
+Realizando la sustitución de `\((9)\)` en `\((8)\)`, se obtiene el siguiente modelo lineal que puede estimarse fácilmente:
+
+--
+`\begin{align*}
+{ y }_{ i }=\sum _{ j=0 }^{ q }{ { b }_{ j }\left( x \right) { \beta  }_{ j } } +{ \epsilon  }_{ i },\quad i=1,2,\dots ,n
+\end{align*}`
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-bottom: 0px" &gt; Regresión Polinómica &lt;/h3&gt;  
+
+--
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
+La construcción de `f` se puede realizar mediante la técnica conocida como &lt;b&gt;regresión polinómica&lt;/b&gt;, la cual hace uso de una &lt;b&gt;base polinómica&lt;/b&gt;.
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
+El modelo que se obtiene al ajustar la función `f` mediante una función polinómica de grado `d,` es el siguiente
+&lt;/div&gt;
+
+--
+
+`\begin{align}
+{ y }_{ i }={ \beta  }_{ 0 }+{ \beta  }_{ 1 }x_{ i }+{ \beta  }_{ 2 }{ x }_{ i }^{ 2 }+\dots +{ \beta  }_{ d }{ x }_{ i }^{ d }+{ \epsilon  }_{ i } \tag{10}
+\end{align}`
+
+--
+
+&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 0px"&gt; 
+En donde `1,x_{ i },x_{ i }^{ 2 },...,x_{ i }^{ d }` son funciones básicas.
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: 0px"&gt; 
+Para un grado `d` suficientemente grande, la &lt;b&gt;regresión polinómica&lt;/b&gt;:
+&lt;/div&gt;
+
+--
+
+* Genera una curva extremadamente no lineal.
+
+--
+* Puede adoptar comportamientos muy extraños.
+
+--
+* Conlleva a sufrir de inestabilidad en los bordes.
+
+--
+
+La alternativa adecuada es la estimación por splines.
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-bottom: 0px" &gt; Splines Cúbicos de Regresión &lt;/h3&gt;  
+
+--
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
+Estiman `f` dividiendo la función original en secciones y ajustando cada sección con un polinomio de menor grado. Cada punto que une las distintas secciones se conoce como “nodo”
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 5px"&gt; 
+La base que permite estimar `f` está formada por splines y se la conoce como &lt;b&gt;B-spline&lt;/b&gt;.
+&lt;/div&gt;
+
+
+--
+&lt;div class="definition_box2" style="margin-top:20px;"&gt;
+&lt;div class="txt1"&gt;
+Una &lt;b&gt;B-Spline&lt;/b&gt; de orden `d` es un polinomio de grado `d-1`, que es continuo hasta la derivada `d-2` en la transición entre nodos.
+&lt;/div&gt;
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 15px"&gt; 
+Si tomamos `d=3` en la ecuación `(10)`, se obtiene el siguiente modelo de regresión cúbico:
+&lt;/div&gt;
+
+--
+
+`\begin{align}
+    { y }_{ i }={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i }+{ \beta  }_{ 2 }{ x }_{ i }^{ 2 }+{ \beta  }_{ 3 }{ x }_{ i }^{ 3 }+{ \epsilon  }_{ i } \tag{11}
+\end{align}`
+
+--
+En donde, los coeficientes `\({ \beta  }_{ 0 }\)`, `\({ \beta  }_{ 1 }\)`, `\({ \beta  }_{ 2 }\)` y `\({ \beta  }_{ 3 }\)` son diferentes en las distintas secciones y el ajuste de `\({ y }_{ i }\)` se realiza mediante un polinomio cúbico definido a trozos.
+
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;div class="txt1" style = "margin-top: 30px; margin-bottom: -20px"&gt; 
+Un polinomio cúbico definido a trozos con un solo nodo en un punto `x^{ \prime }` se define de la forma:
+&lt;/div&gt;
+
+
+`\begin{align}
+    { y }_{ i }=\begin{cases} { \beta  }_{ 01 }+{ \beta  }_{ 11 }{ x }_{ i }+{ \beta  }_{ 21 }{ x }_{ i }^{ 2 }+{ \beta  }_{ 31 }{ x }_{ i }^{ 3 }+{ \epsilon  }_{ i }\quad si\quad { x }_{ i }&lt;{ { x }^{ \prime  } } \\ { \beta  }_{ 02 }+{ \beta  }_{ 12 }{ x }_{ i }+{ \beta  }_{ 22 }{ x }_{ i }^{ 2 }+{ \beta  }_{ 32 }{ x }_{ i }^{ 3 }+{ \epsilon  }_{ i }\quad si\quad { x }_{ i }\ge { { x }^{ \prime  } } \end{cases} \tag{12}
+\end{align}`
+
+--
+&lt;div class="txt1" style = "margin-top: 5px; margin-bottom: -30px"&gt; 
+De modo que, `(12)` realiza el ajuste de los datos mediante dos funciones polinómicas diferentes. 
+&lt;/div&gt;
+
+--
+
+&lt;figure&gt;
+&lt;figcaption style="text-align: center;"&gt;Fig.2 - Spline Cúbico.&lt;/figcaption&gt;
+  &lt;img
+  src="logo/SplineCubico.png"
+  height="30%"
+  width="58%"
+  style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom:5px;"
+/&gt;
+&lt;/figure&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: -25px; margin-bottom: -25px"&gt; 
+Gráficamente un &lt;b&gt;spline cúbico&lt;/b&gt; según  [Wood, Simon N., 2017], es una curva compuesta por secciones de polinomios cúbicos unidos de tal forma que la curva sea continua hasta la segunda derivada en cada nodo.
+&lt;/div&gt;
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-bottom: 0px" &gt; Splines Cúbicos - Bases &lt;/h3&gt;  
+
+--
+
+&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
+Una base muy usada es la propuesta por [James et al., 2014], hace uso de `k` nodos `x_{ i }^{ \prime  }` con `i=1,2,...,k`. Cuyas funciones básicas son:
+&lt;/div&gt;
+
+--
+
+`$${ b }_{ 1 }\left( x \right) =x,\quad { b }_{ 2 }\left( x \right) ={ x }^{ 2 },\quad { b }_{ 3 }\left( x \right) ={ x }^{ 3 } \\ { b }_{ 4 }\left( x \right) =R\left( x,{ x }_{ 1 }^{ \prime  } \right) ,\quad { b }_{ 5 }\left( x \right) =R\left( x,{ x }_{ 2 }^{ \prime  } \right) ,\dots ,{ b }_{ k+3 }\left( x \right) =R\left( x,{ x }_{ k }^{ \prime  } \right),$$`
+
+--
+&lt;div class="txt1" style = "margin-top: -5px; margin-bottom: 0px"&gt; 
+con,
+&lt;/div&gt;
+
+`\begin{align}
+R\left( x,{ x }_{ i }^{ \prime  } \right) ={ \left( x-{ x }_{ i }^{ \prime  } \right)  }_{ + }^{ 3 }\begin{cases} { \left( x-{ x }_{ i }^{ \prime  } \right)  }^{ 3 },\quad si\quad x&gt;{ x }_{ i }^{ \prime  } \\ ~~~~~~0~~~~~~, \quad si \quad x\le { x }_{ i }^{ \prime  } \end{cases}.
+\end{align}`
+
+--
+&lt;div class="txt1" style = "margin-top: 5px; margin-bottom: 0px"&gt; 
+De manera que `(8)` se transforma a
+&lt;/div&gt;
+
+
+--
+
+`\begin{align}
+{ y }_{ i }={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i }+{ \beta  }_{ 2 }{ x }_{ i }^{ 2 }+{ \beta  }_{ 3 }{ x }_{ i }^{ 3 }+{ \beta  }_{ 4 }R\left( x,{ x }_{ 1 }^{ \prime  } \right) +{ \beta  }_{ 5 }R\left( x,{ x }_{ 2 }^{ \prime  } \right) +\dots +{ \beta  }_{ k+2 }R\left( x,{ x }_{ k }^{ \prime  } \right) +{ \epsilon  }_{ i }
+\end{align}`
+
+--
+También el vector de coeficientes `\(\beta\)` puede estimarse por mínimos cuadrados.
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-bottom: 5px" &gt; Grado de suavizado: Splines de regresión penalizadas &lt;/h3&gt;  
+
+--
+
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 5px"&gt; 
+De lo mencionado anteriormente el modelo se ajusta por mínimos cuadrados. Es decir, el modelo se ajusta al minimizar  
+&lt;/div&gt;
+
+`\begin{align}
+     { \left\| y-X\beta  \right\|  }^{ 2 }\tag{13}
+\end{align}`
+
+--
+
+&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 5px"&gt; 
+Para controlar la suavidad del modelo se añade una penalización de “ondulación”:
+&lt;/div&gt;
+
+--
+
+`\begin{align}
+     { \left\| y-X\beta  \right\|  }^{ 2 }+\lambda \int _{ 0 }^{ 1 }{ { \left[ { f }^{ \prime \prime  }\left( x \right)  \right]  }^{ 2 } } dx,
+\end{align}`
+ 
+--
+
+&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
+ donde `\lambda ` se conoce como &lt;i&gt;parámetro de suavizado&lt;/i&gt; y penaliza a una función `f` al dar más o menos peso al cuadrado integrado de la segunda derivada.
+&lt;/div&gt;
+
+--
+
+* `\(\lambda = 0:\)` Conduce a una estimación de spline de regresión no penalizada.
+
+--
+* `\(\lambda \longrightarrow \infty:\)`  Da como resultado una estimación para `\(f\)` que genera una línea recta.
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;div class="txt1" style = "margin-top: 35px; margin-bottom: -5px"&gt; 
+Como la función estimada `f` es lineal con respecto al vector de parámetros `\beta`, la integral puede ser calculada como sigue:
+&lt;/div&gt;
+
+--
+
+`\begin{align*}
+     \int _{ 0 }^{ 1 }{ { \left[ { f }^{ \prime \prime  }\left( x \right)  \right]  }^{ 2 } } dx={ \beta  }^{ T }S\beta. 
+\end{align*}`
+
+--
+&lt;div class="txt1" style = "margin-top: -5px; margin-bottom: -5px"&gt; 
+En donde `S` es una matriz de coeficientes conocidos, [Gu, 2002] muestra que
+&lt;/div&gt;
+
+`\begin{align}
+{ S }_{ 0,0 }={ S }_{ 1,1 }=0~~y~~{ S }_{ i+2,j+2 }=R\left( { x }_{ i }^{ \prime  },{ x }_{ j }^{ \prime  } \right) \quad 
+\end{align}`
+
+--
+&lt;div class="txt1" style = "margin-top: -10px; margin-bottom: -10px"&gt; 
+Así, el ajuste por &lt;b&gt;Splines de regresión penalizadas&lt;/b&gt; se realiza minimizando
+&lt;/div&gt;
+
+
+--
+
+`\begin{align}
+ { \left\| y-X\beta  \right\|  }^{ 2 }+\lambda{ \beta  }^{ T }S\beta, \tag{14}
+\end{align}`
+
+--
+&lt;div class="txt1" style = "margin-top: -10px; margin-bottom: -10px"&gt;
+y, el estimador de mínimos cuadrados penalizados de `\beta` dado `\lambda` viene dado por
+&lt;/div&gt;
+
+`\begin{align*}
+     \hat { \beta  } ={ \left( { X }^{ T }X+\lambda S \right)  }^{ -1 }{ X }^{ T }y. 
+\end{align*}`
+
+--
+&lt;div class="txt1" style = "margin-top: -10px; margin-bottom: -5px"&gt;
+Estimar el parámetro de suavizado `\lambda` resume el problema de determinar el grado de suavidad del modelo.
+&lt;/div&gt;
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Estimación del parámetro de suavizado - REML &lt;/h3&gt;  
+
+&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: 0px"&gt; 
+Es necesario estimar un `\lambda` tal que la función estimada esté lo más cercana a la función original `f`.
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
+En general existen dos métodos que son usados, estos son: 
+&lt;/div&gt;
+
+--
+
+* **Métodos de error de predicción:** “Validación cruzada” o GCV.
+
+--
+* **Métodos de probabilidad marginal:** Basados en modelos Bayesianos/mixtos de suavizado; “Máxima probabilidad restringida” o REML.
+
+--
+
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
+Según [Wood, Simon N., 2017], REML es menos propenso a los mínimos locales que los otros criterios.
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
+La función de probabilidad restringida, dado el vector de parámetros suaves, λ, se obtiene integrando `\beta` fuera de la densidad conjunta de los datos y los coeficientes
+&lt;/div&gt;
+
+`\begin{align}
+     { l }_{ r }\left( \hat { \beta  } ,\lambda  \right) =\quad \int { f\left( y|\beta  \right) f\left( \beta  \right) d\beta  }. \tag{15}
+\end{align}`
+
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Estimación del parámetro de suavizado - REML &lt;/h3&gt; 
+
+&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: 0px"&gt; 
+La función de probabilidad restringida depende de `\lambda` y las estimaciones `\hat { \beta  } ` (a través de la penalización), pero no de los parámetros aleatorios β. 
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
+Un enfoque alternativo es elegir los parámetros de suavizado que maximicen la probabilidad marginal logarítmica bayesiana:
+&lt;/div&gt;
+
+
+--
+`\begin{align}
+     { v }_{ r }\left( \lambda  \right) =\log { { l }_{ r }\left( \hat { \beta  } ,\lambda  \right)  } =\log { \int { f\left( y|\beta  \right) f\left( \beta  \right) d\beta  }  }. \tag{16}
+\end{align}`
+
+--
+&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 0px"&gt; 
+Es decir, se usa `(15)` para derivar vectores de prueba para `\lambda` para una iteración PIRLS (mínimos cuadrados reponderados iterativamente penalizados) anidada:
+&lt;/div&gt;
+
+--
+
+* Dado un vector de prueba `\(\lambda\)`, se estima `\(\beta\)` usando PIRLS.
+
+--
+* Se actualiza `\(\lambda\)` maximizando la probabilidad logarítmica restringida `\(\left(16\right)\)`.
+
+--
+* Se repiten los pasos `\(1\)` y `\(2\)` hasta la convergencia.
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Modelo Aditivo &lt;/h3&gt;  
+
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
+Los modelos score de interés tienen más de una variable.
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 5px"&gt; 
+Por facilidad, sin pérdida de generalidad se trabaja con dos variables explicativas `x` y `z`. Por lo tanto, el modelo aditivo toma la siguiente estructura:
+&lt;/div&gt;
+
+--
+
+`\begin{align}
+ { y }_{ i }=\alpha +{ f }_{ 1 }\left( { x }_{ i } \right) +{ f }_{ 2 }\left( z_{ i } \right) +{ \epsilon  }_{ i },\quad i=1,2,\dots ,n \tag{17}
+\end{align}`
+
+&lt;div class="txt1" style = "margin-top: 5px; margin-bottom: 0px"&gt; 
+donde:
+&lt;/div&gt;
+
+--
+
+* `\(\alpha:\)` Parámetro de intercepción.
+
+--
+* `\({ f }_{ 1 }\)` y `\({ f }_{ 2 }:\)` funciones suaves estimadas con los métodos introducidos en las secciones anteriores.
+
+--
+* `\({ \epsilon  }_{ i }:\)` término de error aleatorio i.i.d con distribición `\(N\left( 0,{ \sigma  }^{ 2 } \right)\)`.
+
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Modelo Aditivo &lt;/h3&gt;  
+
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
+Modelar `y_{ i }` como la suma de las funciones de suavizado individuales `f_{ 1 }(x) ,f_{ 2 }( z )`, en lugar de una sola función `f(x,z)` imponen condiciones muy fuerte:
+&lt;/div&gt;
+
+--
+
+* Mantiene la capacidad interpretativa del modelo.
+
+--
+* Estimar `\({ f }\left( { x,z } \right)\)` proporciona flexibilidad superior al modelo, pero una capacidad de interpretación menor.
+
+--
+
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: -5px"&gt; 
+Tener más de una función en el modelo, provoca un problema de identificabilidad. 
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 5px"&gt; 
+Este problema se resuelve utilizando splines de regresión penalizadas, estimando los coeficientes `\beta` por mínimos cuadrados penalizados
+&lt;/div&gt;
+
+`\begin{align}
+ { \left\| y-X\beta  \right\|  }^{ 2 }+{ \lambda  }_{ 1 }{ \beta  }^{ T }{ S }_{ 1 }\beta +{ \lambda  }_{ 2 }{ \beta  }^{ T }{ S }_{ 2 }\beta, \tag{18}
+\end{align}`
+
+--
+
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
+y seleccionando el parámetro de suavizado `\lambda_{ i }` mediante Máxima probabilidad restringida (REML).
+&lt;/div&gt;
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Modelo Logístico Aditivo Generalizado &lt;/h3&gt;  
+
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
+Los `GAM` se pueden utilizar en situaciones donde `Y` es cualitativo. 
+&lt;/div&gt;
+
+--
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 5px"&gt; 
+Relacionando la media de la respuesta binaria `u_{ i }( X ) =Pr( y_{ i }=1|X_{ i })` mediante un modelo de regresión lineal y la función de enlace &lt;i&gt;logit&lt;/i&gt;, se construye un modelo de regresión logística `(6)` para datos binarios:
+&lt;/div&gt;
+
+--
+
+`\begin{align}
+    logit\left( { u }_{ i }\left( { X } \right)  \right) =\ln { \left( \frac { { u }_{ i }\left( { X } \right)  }{ 1-{ u }_{ i }\left( { X } \right)  }  \right)  } ={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i1 }+{ \beta  }_{ 2 }{ x }_{ i2 }+\dots +{ \beta  }_{ p }{ x }_{ ip }, \tag{19}
+\end{align}`
+
+--
+
+&lt;div class="txt1" style = "margin-top: 5px; margin-bottom: 0px"&gt; 
+Una forma natural de extender `(19)` para permitir relaciones no lineales es usar el &lt;b&gt;modelo de regresión logístico aditivo&lt;/b&gt;, el mismo se consigue:
+&lt;/div&gt;
+
+--
+
+* Reemplazaando cada término lineal por una forma funcional más general.
+
+--
+* Relacionando la media condicional `\({ u }_{ i }\left( { X } \right)\)` de una respuesta `\(Y\)` con una función aditiva de los predictores a través de una función de enlace `\(logit\)`.
+
+---
+
+class: slides-demo
+
+# Modelo logístico aditivo generalizado
+
+&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Modelo Logístico Aditivo Generalizado &lt;/h3&gt;  
+
+--
+&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 10px"&gt; 
+Con los cambios realizados, se tiene:
+&lt;/div&gt;
+
+
+--
+
+`\begin{align}
+    logit\left( { u }_{ i }\left( { X } \right)  \right) =\ln { \left( \frac { { u }_{ i }\left( { X } \right)  }{ 1-{ u }_{ i }\left( { X } \right)  }  \right)  } ={ \beta  }_{ 0 }+{ f }_{ 1 }\left( { x }_{ i1 } \right) +{ f }_{ 2 }\left( { x }_{ i2 } \right) +\dots +{ { f }_{ p }\left( { x }_{ ip } \right)  }, \tag{20}
+\end{align}`
+
+--
+&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 0px"&gt; 
+donde `f_{ j }` es una función suave no especificada.
+&lt;/div&gt;
+
+--
+
+* La forma no paramétrica de estas funciones hace que el modelo sea más flexible.
+
+--
+* La aditividad se conserva y esto nos permite interpretar el modelo de la misma manera que en un modelo de regresión logístico.
 
 ---
 
@@ -391,989 +1222,6 @@ Un modelo credit scoring presenta un buen desempeño cuando:
 
 --
 * En los deciles más altos se concentran porcentajes significativos de clientes Buenos.
-
----
-
-class: slides-demo
-
-# Modelo de regresión logística - logit
-
-&lt;h3 style = "margin-bottom: -10px" &gt; Introducción &lt;/h3&gt;  
-
---
-La modelación estadística permite explicar la relación entre una **variable dependiente** `\(Y\)`, y un conjunto de `\(p\)` **variables independientes** `\({ X }_{ 1 },{ X }_{ 2 },\dots ,{ X }_{ p }\)`. Esta relación puede expresarse formalmente como:
-
---
-`\begin{align}
-Y&amp;=f\left( { X }_{ 1 },{ X }_{ 2 },\dots ,{ X }_{ p } \right)+\epsilon,\tag{1}
-\end{align}`
-
-donde: 
-
---
-* `\(f:\)` Función desconocida fija de `\({ X }_{ 1 },{ X }_{ 2 },\dots ,{ X }_{ p }\)`. 
-
---
-* `\(\epsilon:\)` Término de error aleatorio.
-
---
-
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-Con ayuda de determinados métodos o modelos de aprendizaje estadístico se estima una función `f` que satisfaga la igualdad `(1)`.
-&lt;/div&gt;
-
---
-
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-La mayoría de estos modelos pueden clasificarse como: &lt;b&gt;modelos paramétricos&lt;/b&gt; y &lt;b&gt;modelos no paramétricos&lt;/b&gt;.
-&lt;/div&gt;
-
----
-
-class: slides-demo
-
-# Modelo de regresión logística - logit
-
-&lt;h3 style = "margin-bottom: 0px" &gt; Modelos paramétricos &lt;/h3&gt;  
-
---
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 20px"&gt; 
-La función `f` tiene una forma funcional específica. Se estiman con un enfoque basado en modelos de dos pasos:
-&lt;/div&gt;
-
-
---
-* Se realiza un supuesto sobre la forma funcional de `\(f\)`. Por ejemplo, si `\(f\)` es lineal se lo expresa de la siguiente forma:
-
-`\begin{align}
-    f\left( X \right) &amp;={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ X }_{ 1 }+{ \beta  }_{ 2 }{ X }_{ 2 }+\dots +{ \beta  }_{ p }{ X }_{ p }\tag{2}
-\end{align}`
-
---
-* Para el ajuste del modelo lineal `\(\left(2\right)\)`, se necesita estimar los valores de los `\(p+1\)` parámetros `\({ \beta  }_{ 0 },{ \beta  }_{ 1 },\dots ,{ \beta  }_{ p }\)` de modo que
-
-`\begin{align}
-    Y &amp;\approx { \beta  }_{ 0 }+{ \beta  }_{ 1 }{ X }_{ 1 }+{ \beta  }_{ 2 }{ X }_{ 2 }+\dots +{ \beta  }_{ p }{ X }_{ p }\tag{3}
-\end{align}`
-
---
-El **Modelo Lineal Generalizado** generaliza el modelo lineal clásico, de manera que la variable dependiente `\(Y\)` está relacionada linealmente con las covariables mediante una determinada función de enlace (Función Link). Estos modelos forman parte del enfoque paramétrico en incluyen el **Modelo de regresión logística múltiple**.
-
----
-
-class: slides-demo
-
-# Modelo de regresión logística - logit
-
-&lt;div class="txt1" style = "margin-top: 30px; margin-bottom: 10px"&gt; 
-Método paramétrico que se utiliza para predecir la probabilidad de una variable dependiente categórica, en nuestro caso binaria: Bueno `(1)` y Malo `(0)`.
-&lt;/div&gt;
-
---
-
-&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 3px"&gt; 
-Consideremos:  
-&lt;/div&gt;
-
---
-* `\(n:\)` Número de individuos en una muestra aleatoria.
-
---
-* `\(p:\)` Número de varibles explicativas o independientes.
-
---
-* `\(X=\left( X_{ 1 },X_{ 2 },...,{ X }_{ p } \right):\)` Conjunto de `\(p\)` variables independientes.
-
---
-* `\(X_{ i }=\left(1, { x }_{ i1 }, { x }_{ i2 },\dots { x }_{ ip } \right):\)` Vector de características del individuo `\(i\)`, donde `\({ x }_{ ij }\)` es el valor de la variable `\(j=1,2,\dots ,p\)` en el individuo `\(i=1,2,\dots ,n\)`.
-
---
-* `\(Y=\left( y_{ 1 },y_{ 2 },...,y_{ n } \right):\)` La variable dependiente, donde `\({ y }_{ i }\)` es el valor de la variable `\(Y\)` en el individuo `\(i\)`. El valor `\({ y }_{ i }\)`, representa lo siguiente: 
-
-`$$y_i =\begin{cases} 1: \textrm{Si el individuo i es etiquetado como Bueno} \\ 0: \textrm{Si el individuo i es etiquetado como Malo.} \end{cases}\tag{4}$$`
-
---
-* `\(\beta =\left( { \beta  }_{ 0 },{ \beta  }_{ 1 },{ \beta  }_{ 2 },\dots ,{ \beta  }_{ p } \right) :\)` Vector de `\(p+1\)` parámetros (constantes) desconocidos que permitirán relacionar las variables independientes `\(X\)`, con la variable dependiente `\(Y\)`.
-
----
-
-class: slides-demo
-
-# Modelo de regresión logística - logit
-
-&lt;div class="txt1" style = "margin-top: 35px; margin-bottom: 15px"&gt; 
-La función de distribución logística es base del modelo logit, está definida de la siguiente manera: &lt;/div&gt;
-
---
-`\begin{align}
-    { \pi  }_{ i }&amp;=Pr\left( { y }_{ i }=1|{ X }_{ i } \right) =\frac { 1 }{ 1+exp\left( -{ \tau  }_{ i } \right)  } ,\quad -\infty &lt;{ \tau  }_{ i }&lt;\infty ,\quad i=1,2,\dots, n\tag{5}    
-\end{align}`
-
---
-con,
-
---
-`\begin{align*}
-    { \tau  }_{ i }&amp;={ { X } }_{ i }^{ T }\beta ={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i1 }+{ \beta  }_{ 2 }{ x }_{ i2 }+\dots +{ \beta  }_{ p }{ x }_{ ip }.
-\end{align*}`
-
-Donde:
-
---
-* `\({ \pi  }_{ i }:\)` Función permite encontrar la probabilidad de que `\({ y }_{ i }=1\)`, el individuo `\(i\)` sea etiquetado como `\(Bueno\)`, tomando en cuenta las características `\({ X }_{ i }\)` que posee. El rango de esta función está en el intervalo `\(\left[ 0,1 \right]\)`
-
---
-
-El modelo tiene como objetivo estimar los coeficientes `\({ \beta  }_{ 0 },{ \beta  }_{ 1 },\dots ,{ \beta  }_{ p }\)` que mejor se ajusten a la ecuación `\(\left(5\right)\)`.
-
----
-
-class: slides-demo
-
-# Modelo de regresión logística - logit
-
-&lt;div class="txt1" style = "margin-top: 35px; margin-bottom: 0px"&gt; 
-Despejando `{ \tau  }_{ i }` de `(5)` se obtiene la igualdad conocida como modelo `logit`.
-&lt;/div&gt;
-
---
-
-`\begin{align}
-   { \tau  }_{ i }= logit\left( { \pi  }_{ i } \right) =\ln { \left( \frac { { \pi  }_{ i } }{ 1-{ \pi  }_{ i } }  \right)  } ={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i1 }+{ \beta  }_{ 2 }{ x }_{ i2 }+\dots +{ \beta  }_{ p }{ x }_{ ip }\tag{6}
-\end{align}`
-
---
-
-&lt;div class="txt1" style = "margin-top: -5px; margin-bottom: 10px"&gt; 
-A la ecuación `(6)` se la conoce como razón de probabilidades `(odds` `ratio)`. La función &lt;i&gt;logística&lt;/i&gt; puede ser representada gráficamente:
-&lt;/div&gt;
-
-
---
-&lt;figure style = "margin-top: 0px; margin-bottom: 0px"&gt;
-&lt;figcaption style="text-align: center;"&gt;Fig.1 - Función logística.&lt;/figcaption&gt;
-  &lt;img
-  src="logo/logit.png"
-  height="30%"
-  width="60%"
-  style="display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom:5px;"
-/&gt;
-&lt;/figure&gt;
-
----
-
-class: slides-demo
-
-# Modelo de regresión logística - logit
-
-&lt;h3 style = "margin-bottom: 0px" &gt; Interpretación de los parámetros `\beta` &lt;/h3&gt;  
-
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
-La ventaja que posee un modelo &lt;i&gt;logit&lt;/i&gt; se encuentra en su fácil interpretación. Para ayudar en la interpretación de los coeficientes es necesario conocer el significado de `odds`.
-&lt;/div&gt;
-
---
-
-&lt;div class="definition_box2" style="margin-top:20px;"&gt;
-&lt;div class="txt1"&gt;
-Se define como la razón que se establece entre la probabilidad de ocurrencia de un suceso y la probabilidad de no ocurrencia del mismo.
-&lt;/div&gt;
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-La relación que existe entre el `Odds` y la probabilidad es:
-&lt;/div&gt;
-
---
-
-`\begin{align}
-    Odds=\frac {Probabilidad~de~que~un~suceso~ocurra}{Probabilidad~de~que~un~suceso~no~ocurra}\tag{7}
-\end{align}`
-
---
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 10px"&gt; 
-Si tomamos en cuenta la ecuación `(5)` y la relacionamos con la ecuación `(7)` se obtiene:
-&lt;/div&gt;
-
---
-
-`\begin{align}
-    \frac { { \pi  }_{ i } }{ 1-{ \pi  }_{ i } } =\frac { \frac { 1 }{ 1+exp\left( -{ \tau  }_{ i } \right)  }  }{ \frac { exp\left( -{ \tau  }_{ i } \right)  }{ 1+exp\left( -{ \tau  }_{ i } \right)  }  } =exp\left( { \tau  }_{ i } \right) \tag{8}
-\end{align}`
-
----
-
-class: slides-demo
-
-# Modelo de regresión logística - logit
-
-&lt;div class="txt1" style = "margin-top: 35px; margin-bottom: 20px"&gt; 
-Este resultado se conoce como transformación &lt;i&gt;logit&lt;/i&gt; de la probabilidad `{ \pi  }_{ i }`  y la relación `\frac { { \pi  }_{ i } }{ 1-{ \pi  }_{ i } }` como razón de probabilidades (`Odds~ratio`). Si tomamos el logaritmo natural de `(8)` y se reemplaza `{ \tau  }_{ i }={ { X } }_{ i }^{ T }\beta`, se obtiene como resultado la ecuación `(7)`:
-&lt;/div&gt;
-
---
-
-`\begin{align}
-    logit\left( { \pi  }_{ i } \right) =\ln { \left( \frac { { \pi  }_{ i } }{ 1-{ \pi  }_{ i } }  \right)  } ={ { X } }_{ i }^{ T }\beta={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i1 }+{ \beta  }_{ 2 }{ x }_{ i2 }+\dots +{ \beta  }_{ p }{ x }_{ ip } \tag{9}
-\end{align}`
-
---
-&lt;div class="definition_box2" style = "margin-top: 25px; margin-bottom: 10px"&gt;
-&lt;div class="txt1"&gt;
-El `Odds~ratio` interpreta el modelo como el cambio estimado del logaritmo natural de las probabilidades en favor de la variable dependiente cuando cada una de las variables independientes cambia en una unidad.
-&lt;/div&gt;
-&lt;/div&gt;
-
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 15px"&gt; 
-La interpretación del `Odds~ratio`, según [Gujarati] es la siguiente:
-&lt;/div&gt;
-
-* `\(Odds~ratio &gt; 1:\)` Significa  que existe una relación positiva (o directa).
-* `\(Odds~ratio &lt; 1:\)` Significa  que existe una relación negativa (o inversa).
-* `\(Odds~ratio = 1:\)` Significa  que no existe una relación.
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-bottom: 0px" &gt; Modelos no paramétricos &lt;/h3&gt;  
-
-&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 10px"&gt; 
-La función `f` no realiza suposición alguna sobre la forma funcional de la misma.
-&lt;/div&gt;
-
---
-
-* Ofrece mucha más flexibilidad que los modelos paramétricos.
-
---
-* Se pueden usar funciones suaves en la búsqueda de la función `\(f\)`.
-
---
-* El riesgo que se asume con estos modelos, es el fenómeno conocido como sobreajuste.
-
---
-* Pueden conducir a estimaciones muy complejas de `\(f\)`.
-
---
-
-&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 0px"&gt; 
-El &lt;b&gt;Modelo Aditivo Generalizado&lt;/b&gt; ofrece un punto medio:
-&lt;/div&gt;
-
---
-* Se adapta a relaciones complejas y no lineales.
-
---
-* Mantiene la aditividad, haciendo uso de elementos paramétricos y no paramétricos.
-
---
-* Hace buenas predicciones y permite hacer estadísticas inferenciales.
-
---
-* Se comprende y se puede explicar la estructura subyacente de los modelos y el porqué de las predicciones que hacen. 
-
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;div class="definition_box2" style = "margin-top: 35px; margin-bottom: 15px"&gt;
-&lt;div class="txt1"&gt;
-El &lt;b&gt;Modelo Aditivo Generalizado&lt;/b&gt;, presentado por Hastie y Tibshirani (1986,1990), es una extensión de los Modelos Lineales Generalizados (GLM) al permitir funciones no lineales en cada una de las variables explicativas, mientras se mantiene la aditividad.
-&lt;/div&gt;
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
-La estructura del modelo toma la siguiente forma:
-&lt;/div&gt;
-
-`\begin{align}
-    g\left( { u }_{ i } \right) ={ { { X } }_{ i }^{ { \ast  } } }\theta +{ f }_{ 1 }\left( { x }_{ i1 } \right) +{ f }_{ 2 }\left( { x }_{ i2 } \right) +{ f }_{ 3 }\left( { x }_{ i3 } \right) +\dots +{ \epsilon  }_{ i } \tag{10}
-\end{align}`
-
-&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 0px"&gt; 
-donde:
-&lt;/div&gt;
-
---
-* `\({ u }_{ i }\equiv \mathbb{E}\left( { Y }_{ i } \right)\)` con `\({ Y }_{ i }\sim\)` alguna distribución de la Familia Exponencial.
-
---
-* `\(g\left(  \right)\)` es la función de enlace.
-
---
-* `\({ { X } }_{ i }^{ { \ast  } }\)` es la `\(i-\acute{e}sima\)` fila de la matriz del modelo correspondiente a las variables explicativas estrictamente paramétricas.
-
---
-* `\(\theta\)` es el vector de coeficientes correspondiente.
-
---
-* `\({ f }_{ j }\)` son las funciones suaves (funciones que tienen derivadas continuas hasta cierto orden) de las variables que se modelan no paramétricamente.
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;div class="txt1" style = "margin-top: 35px; margin-bottom: 0px"&gt; 
-Esta flexibilidad lleva consigo dos necesidades:
-&lt;/div&gt;
-
---
-
-* Cómo representar las funciones suaves.
-
---
-* Cómo suavizar estas funciones.
-
---
-
-&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 0px"&gt; 
-Algunos de los métodos de suavizamiento son: 
-&lt;/div&gt;
-
---
-
-**Splines de suavizado, splines de regresión, etc.**
-
---
-* Se pueden expresar utilizando expansiones de base. 
-
---
-* La estimación con splines de regresión se realiza mediante PIRLS (mínimos cuadrados reponderados iterativamente penalizados).
-
---
-
-**Suavizamiento por núcleos (Kernel Smoothing) y regresión polinomial local (LOESS)**
-
---
-* No se pueden expresar mediante la expansión de base.
-
---
-* La estimación, se realiza mediante el algoritmo backfitting (Breiman y Friedman, 1985).
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-bottom: 0px" &gt; Suavizado Univariante - Funciones de Base &lt;/h3&gt;  
-
---
-&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 0px"&gt; 
-La ecuación `(10)` simplificada a una función suave como regresor es igual a:
-&lt;/div&gt;
-
---
-
-`\begin{align}
-    { y }_{ i }=f\left( x_{ i } \right) +{ \epsilon  }_{ i },\quad i=1,2,\dots ,n \tag{11}
-\end{align}`
-
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: 10px"&gt; 
-donde:
-&lt;/div&gt;
-
---
-
-* `\({ y }_{ i }:\)` Variable dependiente.
-
---
-* `\(x_{ i }:\)` Variable explicativa (regresor).
-
---
-* `\(f:\)` Una función suave.
-
---
-* `\({ \epsilon  }_{ i }:\)` Error aleatorio idénticamente distribuido con distribución `\(N\left( 0,{ \sigma  }^{ 2 } \right)\)`.
-
---
-
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
-Para convertir la ecuación `(11)` en un modelo lineal, es necesario es coger una base. Para lo cual, se define:
-&lt;/div&gt;
-
---
-
-* `\({ b }_{ j }:\)` Espacio de **funciones base** de dimensión `\(q+1\)` en donde `\(f\)` (o una buena aproximación), esté presente.
-
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-bottom: 0px" &gt; Suavizado Univariante - Funciones de Base &lt;/h3&gt;  
-
---
-&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 0px"&gt; 
-[Wood, Simon N., 2017], define esta base mediante una combinación lineal entre algunas &lt;b&gt;funciones básicas&lt;/b&gt; conocidas y un vector de parámetros desconocidos `\beta`, con lo cual `f` toma la siguiente forma:
-&lt;/div&gt;
-
-
---
-
-`\begin{align}
-f\left( x \right) =\sum _{ j=0 }^{ q }{ { b }_{ j }\left( x \right) { \beta  }_{ j } } \tag{12}
-\end{align}`
-
---
-Realizando la sustitución de `\((12)\)` en `\((11)\)`, se obtiene el siguiente modelo lineal que puede estimarse fácilmente:
-
---
-`\begin{align*}
-{ y }_{ i }=\sum _{ j=0 }^{ q }{ { b }_{ j }\left( x \right) { \beta  }_{ j } } +{ \epsilon  }_{ i },\quad i=1,2,\dots ,n
-\end{align*}`
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-bottom: 0px" &gt; Regresión Polinómica &lt;/h3&gt;  
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-La construcción de `f` se puede realizar mediante la técnica conocida como &lt;b&gt;regresión polinómica&lt;/b&gt;, la cual hace uso de una &lt;b&gt;base polinómica&lt;/b&gt;.
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-El modelo que se obtiene al ajustar la función `f` mediante una función polinómica de grado `d,` es el siguiente
-&lt;/div&gt;
-
---
-
-`\begin{align}
-{ y }_{ i }={ \beta  }_{ 0 }+{ \beta  }_{ 1 }x_{ i }+{ \beta  }_{ 2 }{ x }_{ i }^{ 2 }+\dots +{ \beta  }_{ d }{ x }_{ i }^{ d }+{ \epsilon  }_{ i } \tag{13}
-\end{align}`
-
---
-
-&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 0px"&gt; 
-En donde `1,x_{ i },{ x }_{ i }^{ 2 },...,{ x }_{ i }^{ d }` son funciones básicas.
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: 0px"&gt; 
-Para un grado `d` suficientemente grande, la &lt;b&gt;regresión polinómica&lt;/b&gt;:
-&lt;/div&gt;
-
---
-
-* Genera una curva extremadamente no lineal.
-
---
-* Puede adoptar comportamientos muy extraños.
-
---
-* Conlleva a sufrir de inestabilidad en los bordes.
-
---
-
-La alternativa adecuada es la estimación por splines.
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-bottom: 0px" &gt; Splines Cúbicos de Regresión &lt;/h3&gt;  
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-Estiman `f` dividiendo la función original en secciones y ajustando cada sección con un polinomio de menor grado. Cada punto que une las distintas secciones se conoce como “nodo”
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 5px"&gt; 
-La base que permite estimar `f` está formada por splines y se la conoce como &lt;b&gt;B-spline&lt;/b&gt;.
-&lt;/div&gt;
-
-
---
-&lt;div class="definition_box2" style="margin-top:20px;"&gt;
-&lt;div class="txt1"&gt;
-Una &lt;b&gt;B-Spline&lt;/b&gt; de orden `d` es un polinomio de grado `d-1`, que es continuo hasta la derivada `d-2` en la transición entre nodos.
-&lt;/div&gt;
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 25px; margin-bottom: 15px"&gt; 
-Si tomamos `d=3` en la ecuación `(13)`, se obtiene el siguiente modelo de regresión cúbico:
-&lt;/div&gt;
-
---
-
-`\begin{align}
-    { y }_{ i }={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i }+{ \beta  }_{ 2 }{ x }_{ i }^{ 2 }+{ \beta  }_{ 3 }{ x }_{ i }^{ 3 }+{ \epsilon  }_{ i } \tag{14}
-\end{align}`
-
---
-En donde, los coeficientes `\({ \beta  }_{ 0 }\)`, `\({ \beta  }_{ 1 }\)`, `\({ \beta  }_{ 2 }\)` y `\({ \beta  }_{ 3 }\)` son diferentes en las distintas secciones y el ajuste de `\({ y }_{ i }\)` se realiza mediante un polinomio cúbico definido a trozos.
-
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;div class="txt1" style = "margin-top: 30px; margin-bottom: -20px"&gt; 
-Un polinomio cúbico definido a trozos con un solo nodo en un punto `x^{ \prime }` se define de la forma:
-&lt;/div&gt;
-
-
-`\begin{align}
-    { y }_{ i }=\begin{cases} { \beta  }_{ 01 }+{ \beta  }_{ 11 }{ x }_{ i }+{ \beta  }_{ 21 }{ x }_{ i }^{ 2 }+{ \beta  }_{ 31 }{ x }_{ i }^{ 3 }+{ \epsilon  }_{ i }\quad si\quad { x }_{ i }&lt;{ { x }^{ \prime  } } \\ { \beta  }_{ 02 }+{ \beta  }_{ 12 }{ x }_{ i }+{ \beta  }_{ 22 }{ x }_{ i }^{ 2 }+{ \beta  }_{ 32 }{ x }_{ i }^{ 3 }+{ \epsilon  }_{ i }\quad si\quad { x }_{ i }\ge { { x }^{ \prime  } } \end{cases} \tag{15}
-\end{align}`
-
---
-&lt;div class="txt1" style = "margin-top: 5px; margin-bottom: -30px"&gt; 
-De modo que, `(15)` realiza el ajuste de los datos mediante dos funciones polinómicas diferentes. 
-&lt;/div&gt;
-
---
-
-&lt;figure&gt;
-&lt;figcaption style="text-align: center;"&gt;Fig.2 - Spline Cúbico.&lt;/figcaption&gt;
-  &lt;img
-  src="logo/SplineCubico.png"
-  height="30%"
-  width="58%"
-  style="display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom:5px;"
-/&gt;
-&lt;/figure&gt;
-
---
-&lt;div class="txt1" style = "margin-top: -25px; margin-bottom: -25px"&gt; 
-Gráficamente un &lt;b&gt;spline cúbico&lt;/b&gt; según  [Wood, Simon N., 2017], es una curva compuesta por secciones de polinomios cúbicos unidos de tal forma que la curva sea continua hasta la segunda derivada en cada nodo.
-&lt;/div&gt;
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-bottom: 0px" &gt; Splines Cúbicos - Bases &lt;/h3&gt;  
-
---
-
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
-Una de las bases más usadas, hace uso de `q-2` nodos `x_{ i }^{ \prime  }` con `i=1,2,...,q-2`. Las funciones básicas para esta base son:
-&lt;/div&gt;
-
---
-
-`\begin{align}
-    { b }_{ 1 }\left( x \right) =1,\quad { b }_{ 2 }\left( x \right) =x,\quad { b }_{ q+2 }\left( x \right) =R\left( x,{ x }_{ i }^{ \prime  } \right),
-\end{align}`
-
---
-&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 0px"&gt; 
-con,
-&lt;/div&gt;
-
-`\begin{align}
-    R\left( x,z \right) =\frac { \left[ { \left( z-\frac { 1 }{ 2 }  \right)  }^{ 2 }-\frac { 1 }{ 12 }  \right] \left[ { \left( x-\frac { 1 }{ 2 }  \right)  }^{ 2 }-\frac { 1 }{ 12 }  \right]  }{ 4 } -\frac { \left[ { \left( \left| x-z \right| -\frac { 1 }{ 2 }  \right)  }^{ 4 }-\frac { 1 }{ 2 } { \left( \left| x-z \right| -\frac { 1 }{ 2 }  \right)  }^{ 2 }+\frac { 7 }{ 240 }  \right]  }{ 24 }
-\end{align}`
-
---
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: 0px"&gt; 
-Esta base cúbica permite ajustar `f` de tal forma que `(11)` se transforma en un modelo lineal `y=X\beta +\epsilon `, en donde la `i-ésima` fila de la matriz `X` es:
-&lt;/div&gt;
-
-
---
-
-`\begin{align}
-    { X }_{ i }=\left[ 1,{ x }_{ i },R\left( { x }_{ i },{ x }_{ 1 }^{ \prime  } \right) ,R\left( { x }_{ i },{ x }_{ 2 }^{ \prime  } \right) ,\dots ,R\left( { x }_{ i },{ x }_{ q-2 }^{ \prime  } \right)  \right]
-\end{align}`
-
---
-Así, el vector de coeficientes `\(\beta\)` puede estimarse por mínimos cuadrados.
-
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-bottom: 0px" &gt; Splines Cúbicos - Bases &lt;/h3&gt;  
-
---
-
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
-Otra base muy usada es la propuesta por [James et al., 2014], hace uso de `k` nodos `x_{ i }^{ \prime  }` con `i=1,2,...,k`. Cuyas funciones básicas son:
-&lt;/div&gt;
-
---
-
-`$${ b }_{ 1 }\left( x \right) =x,\quad { b }_{ 2 }\left( x \right) ={ x }^{ 2 },\quad { b }_{ 3 }\left( x \right) ={ x }^{ 3 } \\ { b }_{ 4 }\left( x \right) =h\left( x,{ x }_{ 1 }^{ \prime  } \right) ,\quad { b }_{ 5 }\left( x \right) =h\left( x,{ x }_{ 2 }^{ \prime  } \right) ,\dots ,{ b }_{ k+3 }\left( x \right) =h\left( x,{ x }_{ k }^{ \prime  } \right),$$`
-
---
-&lt;div class="txt1" style = "margin-top: -5px; margin-bottom: 0px"&gt; 
-con,
-&lt;/div&gt;
-
-`\begin{align}
-h\left( x,{ x }_{ i }^{ \prime  } \right) ={ \left( x-{ x }_{ i }^{ \prime  } \right)  }_{ + }^{ 3 }\begin{cases} { \left( x-{ x }_{ i }^{ \prime  } \right)  }^{ 3 },\quad si\quad x&gt;{ x }_{ i }^{ \prime  } \\ ~~~~~~0~~~~~~, \quad si \quad x\le { x }_{ i }^{ \prime  } \end{cases}.
-\end{align}`
-
---
-&lt;div class="txt1" style = "margin-top: 5px; margin-bottom: 0px"&gt; 
-De manera que `(11)` se transforma a
-&lt;/div&gt;
-
-
---
-
-`\begin{align}
-{ y }_{ i }={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i }+{ \beta  }_{ 2 }{ x }_{ i }^{ 2 }+{ \beta  }_{ 3 }{ x }_{ i }^{ 3 }+{ \beta  }_{ 4 }h\left( x,{ x }_{ 1 }^{ \prime  } \right) +{ \beta  }_{ 5 }h\left( x,{ x }_{ 2 }^{ \prime  } \right) +\dots +{ \beta  }_{ k+2 }h\left( x,{ x }_{ k }^{ \prime  } \right) +{ \epsilon  }_{ i }
-\end{align}`
-
---
-También el vector de coeficientes `\(\beta\)` puede estimarse por mínimos cuadrados.
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-bottom: 5px" &gt; Grado de suavizado: Splines de regresión penalizadas &lt;/h3&gt;  
-
---
-
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 5px"&gt; 
-De lo mencionado anteriormente el modelo se ajusta por mínimos cuadrados. Es decir, el modelo se ajusta al minimizar  
-&lt;/div&gt;
-
-`\begin{align}
-     { \left\| y-X\beta  \right\|  }^{ 2 }\tag{16}
-\end{align}`
-
---
-
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 5px"&gt; 
-Para controlar la suavidad del modelo se añade una penalización de “ondulación”:
-&lt;/div&gt;
-
---
-
-`\begin{align}
-     { \left\| y-X\beta  \right\|  }^{ 2 }+\lambda \int _{ 0 }^{ 1 }{ { \left[ { f }^{ \prime \prime  }\left( x \right)  \right]  }^{ 2 } } dx,
-\end{align}`
- 
---
-
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
- donde `\lambda ` se conoce como &lt;i&gt;parámetro de suavizado&lt;/i&gt; y penaliza a una función `f` al dar más o menos peso al cuadrado integrado de la segunda derivada.
-&lt;/div&gt;
-
---
-
-* `\(\lambda = 0:\)` Conduce a una estimación de spline de regresión no penalizada.
-
---
-* `\(\lambda \longrightarrow \infty:\)`  Da como resultado una estimación para `\(f\)` que genera una línea recta.
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;div class="txt1" style = "margin-top: 35px; margin-bottom: -5px"&gt; 
-Como la función estimada `f` es lineal con respecto al vector de parámetros `\beta`, la integral puede ser calculada como sigue:
-&lt;/div&gt;
-
---
-
-`\begin{align*}
-     \int _{ 0 }^{ 1 }{ { \left[ { f }^{ \prime \prime  }\left( x \right)  \right]  }^{ 2 } } dx={ \beta  }^{ T }S\beta. 
-\end{align*}`
-
---
-&lt;div class="txt1" style = "margin-top: -5px; margin-bottom: -5px"&gt; 
-En donde `S` es una matriz de coeficientes conocidos, [Gu, 2002] muestra que
-&lt;/div&gt;
-
-`\begin{align}
-{ S }_{ 0,0 }={ S }_{ 1,1 }=0~~y~~{ S }_{ i+2,j+2 }=R\left( { x }_{ i }^{ \prime  },{ x }_{ j }^{ \prime  } \right) \quad 
-\end{align}`
-
---
-&lt;div class="txt1" style = "margin-top: -10px; margin-bottom: -10px"&gt; 
-Así, el ajuste por &lt;b&gt;Splines de regresión penalizadas&lt;/b&gt; se realiza minimizando
-&lt;/div&gt;
-
-
---
-
-`\begin{align}
- { \left\| y-X\beta  \right\|  }^{ 2 }+\lambda{ \beta  }^{ T }S\beta, \tag{17}
-\end{align}`
-
---
-&lt;div class="txt1" style = "margin-top: -10px; margin-bottom: -10px"&gt;
-y, el estimador de mínimos cuadrados penalizados de `\beta` dado `\lambda` viene dado por
-&lt;/div&gt;
-
-`\begin{align*}
-     \hat { \beta  } ={ \left( { X }^{ T }X+\lambda S \right)  }^{ -1 }{ X }^{ T }y. 
-\end{align*}`
-
---
-&lt;div class="txt1" style = "margin-top: -10px; margin-bottom: -5px"&gt;
-Estimar el parámetro de suavizado `\lambda` resume el problema de determinar el grado de suavidad del modelo.
-&lt;/div&gt;
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Estimación del parámetro de suavizado - REML &lt;/h3&gt;  
-
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: 0px"&gt; 
-Es necesario estimar un `\lambda` tal que la función estimada esté lo más cercana a la función original `f`.
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-En general existen dos métodos que son usados, estos son: 
-&lt;/div&gt;
-
---
-
-* **Métodos de error de predicción:** “Validación cruzada” o GCV.
-
---
-* **Métodos de probabilidad marginal:** Basados en modelos Bayesianos/mixtos de suavizado; “Máxima probabilidad restringida” o REML.
-
---
-
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-Según [Wood, Simon N., 2017], REML es menos propenso a los mínimos locales que los otros criterios.
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
-La función de probabilidad restringida, dado el vector de parámetros suaves, λ, se obtiene integrando `\beta` fuera de la densidad conjunta de los datos y los coeficientes
-&lt;/div&gt;
-
-`\begin{align}
-     { l }_{ r }\left( \hat { \beta  } ,\lambda  \right) =\quad \int { f\left( y|\beta  \right) f\left( \beta  \right) d\beta  }. \tag{18}
-\end{align}`
-
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Estimación del parámetro de suavizado - REML &lt;/h3&gt; 
-
-&lt;div class="txt1" style = "margin-top: 10px; margin-bottom: 0px"&gt; 
-La función de probabilidad restringida depende de `\lambda` y las estimaciones `\hat { \beta  } ` (a través de la penalización), pero no de los parámetros aleatorios β. 
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 15px; margin-bottom: 0px"&gt; 
-Un enfoque alternativo es elegir los parámetros de suavizado que maximicen la probabilidad marginal logarítmica bayesiana:
-&lt;/div&gt;
-
-
---
-`\begin{align}
-     { v }_{ r }\left( \lambda  \right) =\log { { l }_{ r }\left( \hat { \beta  } ,\lambda  \right)  } =\log { \int { f\left( y|\beta  \right) f\left( \beta  \right) d\beta  }  }. \tag{19}
-\end{align}`
-
---
-&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 0px"&gt; 
-Es decir, se usa `(18)` para derivar vectores de prueba para `\lambda` para una iteración PIRLS (mínimos cuadrados reponderados iterativamente penalizados) anidada:
-&lt;/div&gt;
-
---
-
-* Dado un vector de prueba `\(\lambda\)`, se estima `\(\beta\)` usando PIRLS.
-
---
-* Se actualiza `\(\lambda\)` maximizando la probabilidad logarítmica restringida `\(\left(19\right)\)`.
-
---
-* Se repiten los pasos `\(1\)` y `\(2\)` hasta la convergencia.
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Modelo Aditivo &lt;/h3&gt;  
-
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-Los modelos score de interés tienen más de una variable.
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 5px"&gt; 
-Por facilidad, sin pérdida de generalidad se trabaja con dos variables explicativas `x` y `z`. Por lo tanto, el modelo aditivo toma la siguiente estructura:
-&lt;/div&gt;
-
---
-
-`\begin{align}
- { y }_{ i }=\alpha +{ f }_{ 1 }\left( { x }_{ i } \right) +{ f }_{ 2 }\left( z_{ i } \right) +{ \epsilon  }_{ i },\quad i=1,2,\dots ,n \tag{20}
-\end{align}`
-
-&lt;div class="txt1" style = "margin-top: 5px; margin-bottom: 0px"&gt; 
-donde:
-&lt;/div&gt;
-
---
-
-* `\(\alpha:\)` Parámetro de intercepción.
-
---
-* `\({ f }_{ 1 }\)` y `\({ f }_{ 2 }:\)` funciones suaves estimadas con los métodos introducidos en las secciones anteriores.
-
---
-* `\({ \epsilon  }_{ i }:\)` término de error aleatorio i.i.d con distribición `\(N\left( 0,{ \sigma  }^{ 2 } \right)\)`.
-
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Modelo Aditivo &lt;/h3&gt;  
-
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-Modelar `y_{ i }` como la suma de las funciones de suavizado individuales `f_{ 1 }(x) ,f_{ 2 }( z )`, en lugar de una sola función `f(x,z)` imponen condiciones muy fuerte:
-&lt;/div&gt;
-
---
-
-* Mantiene la capacidad interpretativa del modelo.
-
---
-* Estimar `\({ f }\left( { x,z } \right)\)` proporciona flexibilidad superior al modelo, pero una capacidad de interpretación menor.
-
---
-
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: -5px"&gt; 
-Tener más de una función en el modelo, provoca un problema de identificabilidad. 
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 5px"&gt; 
-Este problema se resuelve utilizando splines de regresión penalizadas, estimando los coeficientes `\beta` por mínimos cuadrados penalizados
-&lt;/div&gt;
-
-`\begin{align}
- { \left\| y-X\beta  \right\|  }^{ 2 }+{ \lambda  }_{ 1 }{ \beta  }^{ T }{ S }_{ 1 }\beta +{ \lambda  }_{ 2 }{ \beta  }^{ T }{ S }_{ 2 }\beta, \tag{21}
-\end{align}`
-
---
-
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-y seleccionando el parámetro de suavizado `\lambda_{ i }` mediante Máxima probabilidad restringida (REML).
-&lt;/div&gt;
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Modelo Logístico Aditivo Generalizado &lt;/h3&gt;  
-
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 0px"&gt; 
-Los `GAM` se pueden utilizar en situaciones donde `Y` es cualitativo. 
-&lt;/div&gt;
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 5px"&gt; 
-Relacionando la media de la respuesta binaria `u_{ i }( X ) =Pr( y_{ i }=1|X_{ i })` mediante un modelo de regresión lineal y la función de enlace &lt;i&gt;logit&lt;/i&gt;, se construye un modelo de regresión logística `(6)` para datos binarios:
-&lt;/div&gt;
-
---
-
-`\begin{align}
-    logit\left( { u }_{ i }\left( { X } \right)  \right) =\ln { \left( \frac { { u }_{ i }\left( { X } \right)  }{ 1-{ u }_{ i }\left( { X } \right)  }  \right)  } ={ \beta  }_{ 0 }+{ \beta  }_{ 1 }{ x }_{ i1 }+{ \beta  }_{ 2 }{ x }_{ i2 }+\dots +{ \beta  }_{ p }{ x }_{ ip }, \tag{21}
-\end{align}`
-
---
-
-&lt;div class="txt1" style = "margin-top: 5px; margin-bottom: 0px"&gt; 
-Una forma natural de extender `(6)` para permitir relaciones no lineales es usar el &lt;b&gt;modelo de regresión logístico aditivo&lt;/b&gt;, el mismo se consigue:
-&lt;/div&gt;
-
---
-
-* Reemplazaando cada término lineal por una forma funcional más general.
-
---
-* Relacionando la media condicional `\({ u }_{ i }\left( { X } \right)\)` de una respuesta `\(Y\)` con una función aditiva de los predictores a través de una función de enlace `\(logit\)`.
-
----
-
-class: slides-demo
-
-# Modelo logístico aditivo generalizado
-
-&lt;h3 style = "margin-top: 35px; margin-bottom: 15px" &gt; Modelo Logístico Aditivo Generalizado &lt;/h3&gt;  
-
---
-&lt;div class="txt1" style = "margin-top: 20px; margin-bottom: 10px"&gt; 
-Con los cambios realizados, se tiene:
-&lt;/div&gt;
-
-
---
-
-`\begin{align}
-    logit\left( { u }_{ i }\left( { X } \right)  \right) =\ln { \left( \frac { { u }_{ i }\left( { X } \right)  }{ 1-{ u }_{ i }\left( { X } \right)  }  \right)  } ={ \beta  }_{ 0 }+{ f }_{ 1 }\left( { x }_{ i1 } \right) +{ f }_{ 2 }\left( { x }_{ i2 } \right) +\dots +{ { f }_{ p }\left( { x }_{ ip } \right)  }, \tag{22}
-\end{align}`
-
---
-&lt;div class="txt1" style = "margin-top: 0px; margin-bottom: 0px"&gt; 
-donde `f_{ j }` es una función suave no especificada.
-&lt;/div&gt;
-
---
-
-* La forma no paramétrica de estas funciones hace que el modelo sea más flexible.
-
---
-* La aditividad se conserva y esto nos permite interpretar el modelo de la misma manera que en un modelo de regresión logístico.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
